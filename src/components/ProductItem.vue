@@ -15,7 +15,7 @@
 
     <!--Quantity-->
     <div class="col-quantity">
-      <button class="count" data-test="remove-product">
+      <button class="count" data-test="remove-product" @click="removeProduct()">
         -
       </button>
       <input
@@ -25,7 +25,7 @@
         data-test="product-quantity"
         disabled
       />
-      <button class="count" data-test="add-product">
+      <button class="count" data-test="add-product" @click="addProduct()">
         +
       </button>
     </div>
@@ -61,6 +61,10 @@
 <script lang="ts">
 import { ref, defineComponent } from "vue";
 import { PricingRule } from "@/types";
+import EVENT from "@/enums/event";
+import PRODUCT from "@/enums/product";
+
+const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
 export default defineComponent({
   name: "ProductItem",
@@ -72,9 +76,46 @@ export default defineComponent({
     }
   },
 
-  setup() {
+  emits: {
+    [ADD_PRODUCT]: (code: PRODUCT) => {
+      if (Object.values(PRODUCT).includes(PRODUCT[code])) {
+        return true;
+      } else {
+        console.warn("Invalid payload for the add-product event");
+        return false;
+      }
+    },
+    [REMOVE_PRODUCT]: (code: PRODUCT) => {
+      if (Object.values(PRODUCT).includes(PRODUCT[code])) {
+        return true;
+      } else {
+        console.warn("Invalid payload for the remove-product event");
+        return false;
+      }
+    }
+  },
+
+  setup(props, { emit }) {
     const quantity = ref(0);
     const priceTotal = ref(0);
+
+    const updatePriceTotal = () => {
+      priceTotal.value = props.product.price * quantity.value;
+    };
+
+    const addProduct = () => {
+      quantity.value++;
+      updatePriceTotal();
+      emit(ADD_PRODUCT, props.product.code);
+    };
+
+    const removeProduct = () => {
+      if (quantity.value > 0) {
+        quantity.value -= 1;
+        updatePriceTotal();
+        emit(REMOVE_PRODUCT, props.product.code);
+      }
+    };
 
     const getProductImage = (code: string): string => {
       return `/img/${code.toLowerCase()}.png`;
@@ -83,6 +124,8 @@ export default defineComponent({
     return {
       quantity,
       priceTotal,
+      addProduct,
+      removeProduct,
       getProductImage
     };
   }
