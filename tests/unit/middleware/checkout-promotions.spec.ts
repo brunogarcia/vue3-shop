@@ -27,6 +27,7 @@ describe("Checkout - Promotions", () => {
 
     expect(checkout.getTotalCost()).toBe(60);
     expect(checkout.getTotalCostWithDiscounts()).toBe(57);
+    expect(checkout.getDiscountsApplied()).toHaveLength(1);
   });
 
   it("The checkout is able to process the bulk promotion with more than 3 tshirts", () => {
@@ -38,5 +39,6 @@ describe("Checkout - Promotions", () => {
 
     expect(checkout.getTotalCost()).toBe(80);
     expect(checkout.getTotalCostWithDiscounts()).toBe(76);
+    expect(checkout.getDiscountsApplied()).toHaveLength(1);
   });
 });
