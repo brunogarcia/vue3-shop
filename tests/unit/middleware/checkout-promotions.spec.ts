@@ -41,4 +41,29 @@ describe("Checkout - Promotions", () => {
     expect(checkout.getTotalCostWithDiscounts()).toBe(76);
     expect(checkout.getDiscountsApplied()).toHaveLength(1);
   });
+
+  it("The checkout is able to process the bulk promotion with more than 3 tshirts", () => {
+    checkout
+      .scan(TSHIRT)
+      .scan(TSHIRT)
+      .scan(TSHIRT)
+      .scan(TSHIRT);
+
+    expect(checkout.getTotalCost()).toBe(80);
+    expect(checkout.getTotalCostWithDiscounts()).toBe(76);
+    expect(checkout.getDiscountsApplied()).toHaveLength(1);
+  });
+
+  it("The checkout is able to process multiple promotions at the same time", () => {
+    checkout
+      .scan(CAP)
+      .scan(TSHIRT)
+      .scan(CAP)
+      .scan(TSHIRT)
+      .scan(TSHIRT);
+
+    expect(checkout.getTotalCost()).toBe(70);
+    expect(checkout.getTotalCostWithDiscounts()).toBe(62);
+    expect(checkout.getDiscountsApplied()).toHaveLength(2);
+  });
 });
