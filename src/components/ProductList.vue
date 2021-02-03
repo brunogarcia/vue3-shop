@@ -4,12 +4,14 @@
       v-for="(product, id) in products"
       :key="id"
       :product="product"
+      @add-product="handleAddProduct"
+      @remove-product="handleRemoveProduct"
     />
   </ul>
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { defineComponent } from "vue";
 import ProductItem from "@/components/ProductItem.vue";
 
@@ -24,6 +26,21 @@ export default defineComponent({
     ...mapGetters({
       products: "shopping/products"
     })
+  },
+
+  methods: {
+    ...mapActions({
+      scanProduct: "shopping/scanProduct",
+      removeProduct: "shopping/removeProduct"
+    }),
+
+    handleAddProduct(code: string) {
+      this.scanProduct(code);
+    },
+
+    handleRemoveProduct(code: string) {
+      this.removeProduct(code);
+    }
   }
 });
 </script>
