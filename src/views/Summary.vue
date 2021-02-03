@@ -2,6 +2,7 @@
   <aside class="summary">
     <Title title="Order Summary" />
     <SummaryItems />
+    <SummaryDiscounts />
   </aside>
 </template>
 
@@ -9,12 +10,14 @@
 import { defineComponent } from "vue";
 import Title from "@/components/Title.vue";
 import SummaryItems from "@/components/SummaryItems.vue";
+import SummaryDiscounts from "@/components/SummaryDiscounts.vue";
 
 export default defineComponent({
   name: "Summary",
   components: {
     Title,
-    SummaryItems
+    SummaryItems,
+    SummaryDiscounts
   }
 });
 </script>
