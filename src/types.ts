@@ -1,6 +1,24 @@
 import PRODUCT from "@/enums/product";
 import DISCOUNT from "@/enums/discount";
 
+/**
+ * Vuex
+ */
+export interface State {
+  products: Product[];
+  summary: Summary;
+}
+
+export interface Summary {
+  totalCost: number;
+  totalItems: number;
+  totalCostWithDiscounts: number;
+  discountsApplied: TotalDiscountItem[];
+}
+
+/**
+ * Checkout
+ */
 export interface PricingRule {
   code: PRODUCT;
   price: number;
