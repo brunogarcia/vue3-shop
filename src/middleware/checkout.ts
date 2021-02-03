@@ -1,4 +1,5 @@
 import PRODUCT from "@/enums/product";
+import DISCOUNT from "@/enums/discount";
 import { PricingRule, DiscountRule, ScannerItem } from "@/types";
 import discountRules from "@/middleware/discountRules";
 
@@ -52,6 +53,7 @@ export default class Checkout {
 
     this.addPriceToTotal(pricingRule);
     this.addItemToScanner(pricingRule);
+    this.updateDiscounts(pricingRule);
 
     return this;
   }
@@ -229,5 +231,71 @@ export default class Checkout {
    */
   private removeProductFromScanner(code: PRODUCT) {
     this.scanner = this.scanner.filter(item => item.code !== code);
+  }
+
+  /**
+   * Discounts - Update discounts
+   *
+   * @param {PricingRule} product - The product
+   */
+  private updateDiscounts(product: PricingRule) {
+    const discountsRulesByProduct = this.discountRules.filter(discount => {
+      return discount.products.includes(product.code);
+    });
+
+    discountsRulesByProduct.forEach(discount => {
+      const totalDiscount = this.applyProductDiscount(discount);
+      console.log(totalDiscount);
+      // TODO: update total discounts
+    });
+  }
+
+  /**
+   * Discounts - Apply product discount
+   *
+   * @param {DiscountRule} discount - The discount rule to apply
+   */
+  private applyProductDiscount(discount: DiscountRule): number {
+    const indexItem = this.getItemIndexFromScannerByDiscountCode(discount.code);
+
+    const isValidToApplyDiscount = this.isValidItemToApplyDiscount({
+      indexItem,
+      minToApply: discount.minToApply
+    });
+
+    if (isValidToApplyDiscount) {
+      return discount.calculateDiscount(this.scanner[indexItem]);
+    }
+
+    return 0;
+  }
+
+  /**
+   * Discounts - Get item index from scanner by discount code
+   *
+   * @param {DISCOUNT} code - The product code
+   * @returns {number}
+   */
+  private getItemIndexFromScannerByDiscountCode(code: DISCOUNT): number {
+    return this.scanner.findIndex(product => product.discounts.includes(code));
+  }
+
+  /**
+   * Discounts - Check if the item is valid for apply the discount
+   *
+   * @param {number} payload.indexItem - item index
+   * @param {number} payload.minToApply - min number of items to apply
+   * @returns {boolean}
+   */
+  private isValidItemToApplyDiscount(payload: Record<string, number>): boolean {
+    const { indexItem, minToApply } = payload;
+
+    const existItem = indexItem >= 0;
+
+    if (existItem) {
+      return this.scanner[indexItem].counter >= minToApply;
+    }
+
+    return false;
   }
 }
