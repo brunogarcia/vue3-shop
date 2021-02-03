@@ -52,7 +52,7 @@ export default class Checkout {
    */
   public remove(code: PRODUCT): this {
     const pricingRule = this.getPricingRule(code);
-    console.log(pricingRule);
+    this.subtractPriceToTotal(pricingRule);
 
     return this;
   }
@@ -77,5 +77,14 @@ export default class Checkout {
    */
   private addPriceToTotal(product: PricingRule) {
     this.totalCost += product.price;
+  }
+
+  /**
+   * Total Price - Subtract price to total
+   *
+   * @param {PricingRule} product - The product
+   */
+  private subtractPriceToTotal(product: PricingRule) {
+    this.totalCost -= product.price;
   }
 }

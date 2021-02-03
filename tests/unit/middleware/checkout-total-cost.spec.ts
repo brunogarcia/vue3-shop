@@ -20,4 +20,14 @@ describe("Checkout - Total cost", () => {
 
     expect(checkout.getTotalCost()).toBe(32.5);
   });
+
+  it("After remove a product, the total cost must be updated", () => {
+    checkout
+      .scan(CAP)
+      .scan(TSHIRT)
+      .remove(CAP)
+      .scan(MUG);
+
+    expect(checkout.getTotalCost()).toBe(27.5);
+  });
 });
