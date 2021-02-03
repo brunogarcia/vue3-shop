@@ -5,6 +5,7 @@ import discountRules from "@/middleware/discountRules";
 const { EMPTY } = PRODUCT;
 
 export default class Checkout {
+  private totalCost = 0;
   private pricingRules: PricingRule[];
   private discountRules: DiscountRule[] = [];
   private emptyPricingRule: PricingRule = {
@@ -19,6 +20,16 @@ export default class Checkout {
   }
 
   /**
+   * Get total cost
+   *
+   * @public
+   * @returns {number}
+   */
+  public getTotalCost(): number {
+    return this.totalCost;
+  }
+
+  /**
    * Scan a product
    *
    * @public
@@ -27,7 +38,7 @@ export default class Checkout {
    */
   public scan(code: PRODUCT): this {
     const pricingRule = this.getPricingRule(code);
-    console.log(pricingRule);
+    this.addPriceToTotal(pricingRule);
 
     return this;
   }
@@ -57,5 +68,14 @@ export default class Checkout {
       item => item.code === code
     );
     return pricingRule || this.emptyPricingRule;
+  }
+
+  /**
+   * Total Price - Add price to total
+   *
+   * @param {PricingRule} product - The product
+   */
+  private addPriceToTotal(product: PricingRule) {
+    this.totalCost += product.price;
   }
 }
