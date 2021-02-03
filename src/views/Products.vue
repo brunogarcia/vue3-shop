@@ -1,17 +1,20 @@
 <template>
   <section class="products">
     <Title title="Shopping cart"></Title>
+    <ProductHead />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Title from "@/components/Title.vue";
+import ProductHead from "@/components/ProductHead.vue";
 
 export default defineComponent({
   name: "Products",
   components: {
-    Title
+    Title,
+    ProductHead
   }
 });
 </script>
