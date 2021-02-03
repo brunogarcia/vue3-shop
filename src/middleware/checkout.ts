@@ -1,6 +1,11 @@
 import PRODUCT from "@/enums/product";
 import DISCOUNT from "@/enums/discount";
-import { PricingRule, DiscountRule, ScannerItem } from "@/types";
+import {
+  PricingRule,
+  DiscountRule,
+  ScannerItem,
+  TotalDiscountItem
+} from "@/types";
 import discountRules from "@/middleware/discountRules";
 
 const { EMPTY } = PRODUCT;
@@ -10,6 +15,7 @@ export default class Checkout {
   private scanner: ScannerItem[] = [];
   private pricingRules: PricingRule[];
   private discountRules: DiscountRule[] = [];
+  private discountsApplied: TotalDiscountItem[] = [];
   private emptyPricingRule: PricingRule = {
     code: EMPTY,
     price: 0,
@@ -39,6 +45,32 @@ export default class Checkout {
    */
   public getTotalItems(): number {
     return this.scanner.length;
+  }
+
+  /**
+   * Get total cost with discounts
+   *
+   * @public
+   * @returns {number}
+   */
+  public getTotalCostWithDiscounts(): number {
+    const totalDiscountsApplied = this.getDiscountsApplied()
+      .filter(item => item.total > 0)
+      .reduce((acc, discount) => {
+        return acc + discount.total;
+      }, 0);
+
+    return this.totalCost - totalDiscountsApplied;
+  }
+
+  /**
+   * Get a list of the discounts applied
+   *
+   * @public
+   * @returns {TotalDiscountItem}
+   */
+  public getDiscountsApplied(): TotalDiscountItem[] {
+    return this.discountsApplied.filter(item => item.total > 0);
   }
 
   /**
@@ -245,8 +277,7 @@ export default class Checkout {
 
     discountsRulesByProduct.forEach(discount => {
       const totalDiscount = this.applyProductDiscount(discount);
-      console.log(totalDiscount);
-      // TODO: update total discounts
+      this.updateTotalDiscounts(discount, totalDiscount);
     });
   }
 
@@ -297,5 +328,44 @@ export default class Checkout {
     }
 
     return false;
+  }
+
+  /**
+   * Discounts - Update total discount list
+   *
+   * @param {DiscountRule} discount - The discount rule
+   * @param {number} totalDiscount - The total discount
+   */
+  private updateTotalDiscounts(discount: DiscountRule, totalDiscount: number) {
+    const indexItem = this.discountsApplied.findIndex(
+      item => item.code === discount.code
+    );
+
+    const existsItem = indexItem >= 0;
+    const discountItem = this.getTotalDiscountItem(discount, totalDiscount);
+
+    if (existsItem) {
+      this.discountsApplied[indexItem] = discountItem;
+    } else {
+      this.discountsApplied = [...this.discountsApplied, discountItem];
+    }
+  }
+
+  /**
+   * Discounts - Get total discount item
+   *
+   * @param {DiscountRule} discount - The discount rule
+   * @param {number} totalDiscount - The total discount
+   * @returns {TotalDiscountItem}
+   */
+  private getTotalDiscountItem(
+    discount: DiscountRule,
+    totalDiscount: number
+  ): TotalDiscountItem {
+    return {
+      code: discount.code,
+      literal: discount.literal,
+      total: totalDiscount
+    };
   }
 }

@@ -24,3 +24,9 @@ export interface DiscountRule {
   minToApply: number;
   calculateDiscount(item: ScannerItem): number;
 }
+
+export interface TotalDiscountItem {
+  code: DISCOUNT;
+  literal: string;
+  total: number;
+}
