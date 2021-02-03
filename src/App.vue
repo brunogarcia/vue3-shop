@@ -1,18 +1,22 @@
 <template>
   <main class="App">
-    Hi!
+    <Products />
   </main>
 </template>
 
 <script lang="ts">
 import { mapActions } from "vuex";
 import { defineComponent } from "vue";
+import Products from "@/views/Products.vue";
 
 import "./assets/styles/reset.css";
 import "./assets/styles/commons.css";
 
 export default defineComponent({
   name: "App",
+  components: {
+    Products
+  },
   created() {
     this.initShoppingCart();
   },

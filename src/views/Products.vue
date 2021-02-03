@@ -1,0 +1,69 @@
+<template>
+  <section class="products">
+    Products
+  </section>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Products"
+});
+</script>
+
+<style>
+.products {
+  padding: 40px 32px 40px 56px;
+}
+
+.products button.count {
+  padding: 0 8px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #00a0df;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.products {
+  flex: 1;
+}
+
+.products-list {
+  position: relative;
+  width: 100%;
+}
+
+.product .clear {
+  border: none;
+  background: transparent;
+}
+
+.product .clear span {
+  position: relative;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.product .clear span:before,
+.product .clear span:after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 2px;
+  display: block;
+  width: 12px;
+  height: 2px;
+  border-radius: 8px;
+  background-color: #a6a7b3;
+  transform: rotate(-45deg);
+  transform-origin: center center;
+}
+
+.product .clear span:before {
+  transform: rotate(45deg);
+}
+</style>

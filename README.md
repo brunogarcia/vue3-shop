@@ -98,6 +98,10 @@ npm run lint
 - [feat] Create shopping mutations
 - [feat] Create shopping getters
 
+### App UI
+
+- [feat] Create App component
+
 ### Products UI
 
 - [feat] Create view: products
