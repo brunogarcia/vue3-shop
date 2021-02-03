@@ -65,7 +65,9 @@ export default class Checkout {
    */
   public remove(code: PRODUCT): this {
     const pricingRule = this.getPricingRule(code);
+
     this.subtractPriceToTotal(pricingRule);
+    this.removeItemFromScanner(pricingRule);
 
     return this;
   }
@@ -172,5 +174,60 @@ export default class Checkout {
         counter: 1
       }
     ];
+  }
+
+  /**
+   * Scanner- Remove item from scanner
+   *
+   * @param {PricingRule} product - The product to remove
+   */
+  private removeItemFromScanner(product: PricingRule) {
+    const indexItem = this.getItemIndexFromScannerByCode(product.code);
+    const isValidItem = this.isValidToRestOneItem(indexItem);
+
+    if (isValidItem) {
+      this.restOneItemToCounter(indexItem);
+    } else {
+      this.removeProductFromScanner(product.code);
+    }
+  }
+
+  /**
+   * Scanner- Check if the item is valid to rest one item
+   *
+   * @param indexItem - item index
+   * @returns {boolean}
+   */
+  private isValidToRestOneItem(indexItem: number): boolean {
+    const existsItem = indexItem >= 0;
+
+    if (existsItem) {
+      const { counter } = this.scanner[indexItem];
+      const currentCounterGreaterThanZero = counter > 0;
+      const nextCounterGreaterThanZero = counter - 1 > 0;
+
+      return currentCounterGreaterThanZero && nextCounterGreaterThanZero;
+    }
+
+    return false;
+  }
+
+  /**
+   * Scanner- Rest one to item to counter
+   *
+   * @param {number} indexItem - The item index on the scanner list
+   */
+  private restOneItemToCounter(indexItem: number) {
+    const counter = this.scanner[indexItem].counter - 1;
+    this.updateItemScannerCounter(indexItem, counter);
+  }
+
+  /**
+   * Scanner- Remove product from scanner
+   *
+   * @param {PRODUCT} code - The product code
+   */
+  private removeProductFromScanner(code: PRODUCT) {
+    this.scanner = this.scanner.filter(item => item.code !== code);
   }
 }

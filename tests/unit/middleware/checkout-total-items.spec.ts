@@ -20,4 +20,14 @@ describe("Checkout - Total items", () => {
 
     expect(checkout.getTotalItems()).toBe(3);
   });
+
+  it("After remove a product, the total items must be updated", () => {
+    checkout
+      .scan(CAP)
+      .scan(TSHIRT)
+      .remove(CAP)
+      .scan(MUG);
+
+    expect(checkout.getTotalItems()).toBe(2);
+  });
 });
