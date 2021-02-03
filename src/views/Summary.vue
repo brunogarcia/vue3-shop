@@ -1,17 +1,20 @@
 <template>
   <aside class="summary">
     <Title title="Order Summary" />
+    <SummaryItems />
   </aside>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Title from "@/components/Title.vue";
+import SummaryItems from "@/components/SummaryItems.vue";
 
 export default defineComponent({
   name: "Summary",
   components: {
-    Title
+    Title,
+    SummaryItems
   }
 });
 </script>
