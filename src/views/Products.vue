@@ -2,6 +2,7 @@
   <section class="products">
     <Title title="Shopping cart"></Title>
     <ProductHead />
+    <ProductList />
   </section>
 </template>
 
@@ -9,12 +10,14 @@
 import { defineComponent } from "vue";
 import Title from "@/components/Title.vue";
 import ProductHead from "@/components/ProductHead.vue";
+import ProductList from "@/components/ProductList.vue";
 
 export default defineComponent({
   name: "Products",
   components: {
     Title,
-    ProductHead
+    ProductHead,
+    ProductList
   }
 });
 </script>
