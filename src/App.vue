@@ -1,27 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <main class="App">
+    Hi!
+  </main>
 </template>
 
 <script lang="ts">
+import { mapActions } from "vuex";
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+
+import "./assets/styles/reset.css";
+import "./assets/styles/commons.css";
 
 export default defineComponent({
   name: "App",
-  components: {
-    HelloWorld
+  created() {
+    this.initShoppingCart();
+  },
+  methods: {
+    ...mapActions({
+      initShoppingCart: "shopping/initShoppingCart"
+    })
   }
 });
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.App {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 1088px;
+  max-height: 648px;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  border-radius: 4px;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%);
 }
 </style>
