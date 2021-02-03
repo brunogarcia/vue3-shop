@@ -3,6 +3,7 @@
     <Title title="Order Summary" />
     <SummaryItems />
     <SummaryDiscounts />
+    <SummaryTotal />
   </aside>
 </template>
 
@@ -11,13 +12,15 @@ import { defineComponent } from "vue";
 import Title from "@/components/Title.vue";
 import SummaryItems from "@/components/SummaryItems.vue";
 import SummaryDiscounts from "@/components/SummaryDiscounts.vue";
+import SummaryTotal from "@/components/SummaryTotal.vue";
 
 export default defineComponent({
   name: "Summary",
   components: {
     Title,
     SummaryItems,
-    SummaryDiscounts
+    SummaryDiscounts,
+    SummaryTotal
   }
 });
 </script>
