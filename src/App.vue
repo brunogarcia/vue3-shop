@@ -1,6 +1,7 @@
 <template>
   <main class="App">
     <Products />
+    <Summary />
   </main>
 </template>
 
@@ -8,6 +9,7 @@
 import { mapActions } from "vuex";
 import { defineComponent } from "vue";
 import Products from "@/views/Products.vue";
+import Summary from "@/views/Summary.vue";
 
 import "./assets/styles/reset.css";
 import "./assets/styles/commons.css";
@@ -15,7 +17,8 @@ import "./assets/styles/commons.css";
 export default defineComponent({
   name: "App",
   components: {
-    Products
+    Products,
+    Summary
   },
   created() {
     this.initShoppingCart();
