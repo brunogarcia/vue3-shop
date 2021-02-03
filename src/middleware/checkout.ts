@@ -102,6 +102,7 @@ export default class Checkout {
 
     this.subtractPriceToTotal(pricingRule);
     this.removeItemFromScanner(pricingRule);
+    this.updateDiscounts(pricingRule);
 
     return this;
   }

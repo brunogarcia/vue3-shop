@@ -66,4 +66,27 @@ describe("Checkout - Promotions", () => {
     expect(checkout.getTotalCostWithDiscounts()).toBe(62);
     expect(checkout.getDiscountsApplied()).toHaveLength(2);
   });
+
+  it("The checkout is able to remove the 2x1 promotion", () => {
+    checkout
+      .scan(CAP)
+      .scan(CAP)
+      .remove(CAP);
+
+    expect(checkout.getTotalCost()).toBe(5);
+    expect(checkout.getTotalCostWithDiscounts()).toBe(5);
+    expect(checkout.getDiscountsApplied()).toHaveLength(0);
+  });
+
+  it("The checkout is able to remove the bulk promotion", () => {
+    checkout
+      .scan(TSHIRT)
+      .scan(TSHIRT)
+      .scan(TSHIRT)
+      .remove(TSHIRT);
+
+    expect(checkout.getTotalCost()).toBe(40);
+    expect(checkout.getTotalCostWithDiscounts()).toBe(40);
+    expect(checkout.getDiscountsApplied()).toHaveLength(0);
+  });
 });
