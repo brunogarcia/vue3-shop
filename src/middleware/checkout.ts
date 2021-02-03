@@ -33,6 +33,20 @@ export default class Checkout {
   }
 
   /**
+   * Remove a product
+   *
+   * @public
+   * @param {PRODUCT} code - The pricing rule code
+   * @returns {this}
+   */
+  public remove(code: PRODUCT): this {
+    const pricingRule = this.getPricingRule(code);
+    console.log(pricingRule);
+
+    return this;
+  }
+
+  /**
    * Commons - Get princing rule
    *
    * @param {PRODUCT} code - The product code
