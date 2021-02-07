@@ -1,9 +1,9 @@
-import PRODUCT from "@/enums/product";
-import DISCOUNT from "@/enums/discount";
+import PRODUCT_CODE from "@/enums/product";
+import DISCOUNT_CODE from "@/enums/discount";
 import { DiscountRule, ScannerItem } from "@/types";
 
-const { CAP, TSHIRT } = PRODUCT;
-const { TWO_X_ONE, BULK, PROMO_CODE } = DISCOUNT;
+const { CAP, TSHIRT } = PRODUCT_CODE;
+const { TWO_X_ONE, BULK, PROMO_CODE } = DISCOUNT_CODE;
 
 /**
  * Discount rules

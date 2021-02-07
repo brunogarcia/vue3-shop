@@ -1,6 +1,6 @@
 import { ActionContext } from "vuex";
 import API from "@/api";
-import PRODUCT from "@/enums/product";
+import PRODUCT_CODE from "@/enums/product";
 import Checkout from "@/middleware/checkout";
 import { Product, PricingRule, State } from "@/types";
 import MutationType from "@/store/shopping/utils/mutation_type";
@@ -45,7 +45,10 @@ async function initShoppingCart({ commit }: ActionContext<State, State>) {
  * @param {ActionContext} context - Vuex Action Context
  * @param {PRODUCT} code - The product code
  */
-function scanProduct({ commit }: ActionContext<State, State>, code: PRODUCT) {
+function scanProduct(
+  { commit }: ActionContext<State, State>,
+  code: PRODUCT_CODE
+) {
   try {
     checkout.scan(code);
 
@@ -68,7 +71,10 @@ function scanProduct({ commit }: ActionContext<State, State>, code: PRODUCT) {
  * @param {ActionContext} context - Vuex Action Context
  * @param {PRODUCT} code - The product code
  */
-function removeProduct({ commit }: ActionContext<State, State>, code: PRODUCT) {
+function removeProduct(
+  { commit }: ActionContext<State, State>,
+  code: PRODUCT_CODE
+) {
   try {
     checkout.remove(code);
 

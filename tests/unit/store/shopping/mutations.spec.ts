@@ -1,11 +1,11 @@
 import { State } from "@/types";
-import PRODUCT from "@/enums/product";
-import DISCOUNT from "@/enums/discount";
+import PRODUCT_CODE from "@/enums/product";
+import DISCOUNT_CODE from "@/enums/discount";
 import mutations from "@/store/shopping/mutations";
 import mockState from "../../mocks/mockState";
 
-const { CAP } = PRODUCT;
-const { TWO_X_ONE, BULK } = DISCOUNT;
+const { CAP } = PRODUCT_CODE;
+const { TWO_X_ONE, BULK } = DISCOUNT_CODE;
 
 describe("Shopping store - Getters", () => {
   let state: State;

@@ -1,5 +1,5 @@
-import PRODUCT from "@/enums/product";
-import DISCOUNT from "@/enums/discount";
+import PRODUCT_CODE from "@/enums/product";
+import DISCOUNT_CODE from "@/enums/discount";
 
 /**
  * Vuex
@@ -20,9 +20,9 @@ export interface Summary {
  * Checkout
  */
 export interface PricingRule {
-  code: PRODUCT;
+  code: PRODUCT_CODE;
   price: number;
-  discounts: DISCOUNT[];
+  discounts: DISCOUNT_CODE[];
 }
 
 export interface Product extends PricingRule {
@@ -36,15 +36,15 @@ export interface ScannerItem extends PricingRule {
 }
 
 export interface DiscountRule {
-  code: DISCOUNT;
+  code: DISCOUNT_CODE;
   literal: string;
-  products: PRODUCT[];
+  products: PRODUCT_CODE[];
   minToApply: number;
   calculateDiscount(item: ScannerItem): number;
 }
 
 export interface TotalDiscountItem {
-  code: DISCOUNT;
+  code: DISCOUNT_CODE;
   literal: string;
   total: number;
 }

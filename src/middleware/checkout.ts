@@ -1,5 +1,5 @@
-import PRODUCT from "@/enums/product";
-import DISCOUNT from "@/enums/discount";
+import PRODUCT_CODE from "@/enums/product";
+import DISCOUNT_CODE from "@/enums/discount";
 import {
   PricingRule,
   DiscountRule,
@@ -8,7 +8,7 @@ import {
 } from "@/types";
 import discountRules from "@/middleware/discountRules";
 
-const { EMPTY } = PRODUCT;
+const { EMPTY } = PRODUCT_CODE;
 
 export default class Checkout {
   private totalCost = 0;
@@ -77,10 +77,10 @@ export default class Checkout {
    * Scan a product
    *
    * @public
-   * @param {PRODUCT} code - The pricing rule code
+   * @param {PRODUCT_CODE} code - The pricing rule code
    * @returns {this}
    */
-  public scan(code: PRODUCT): this {
+  public scan(code: PRODUCT_CODE): this {
     const pricingRule = this.getPricingRule(code);
 
     this.addPriceToTotal(pricingRule);
@@ -94,10 +94,10 @@ export default class Checkout {
    * Remove a product
    *
    * @public
-   * @param {PRODUCT} code - The pricing rule code
+   * @param {PRODUCT_CODE} code - The pricing rule code
    * @returns {this}
    */
-  public remove(code: PRODUCT): this {
+  public remove(code: PRODUCT_CODE): this {
     const pricingRule = this.getPricingRule(code);
 
     this.subtractPriceToTotal(pricingRule);
@@ -110,10 +110,10 @@ export default class Checkout {
   /**
    * Commons - Get princing rule
    *
-   * @param {PRODUCT} code - The product code
+   * @param {PRODUCT_CODE} code - The product code
    * @returns {PricingRule}
    */
-  private getPricingRule(code: PRODUCT): PricingRule {
+  private getPricingRule(code: PRODUCT_CODE): PricingRule {
     const pricingRule: PricingRule | undefined = this.pricingRules.find(
       item => item.code === code
     );
@@ -157,10 +157,10 @@ export default class Checkout {
   /**
    * Scanner- Get item index from scanner by code
    *
-   * @param {PRODUCT} code - The product code
+   * @param {PRODUCT_CODE} code - The product code
    * @returns {number}
    */
-  private getItemIndexFromScannerByCode(code: PRODUCT): number {
+  private getItemIndexFromScannerByCode(code: PRODUCT_CODE): number {
     return this.scanner.findIndex(item => item.code === code);
   }
 
@@ -260,9 +260,9 @@ export default class Checkout {
   /**
    * Scanner- Remove product from scanner
    *
-   * @param {PRODUCT} code - The product code
+   * @param {PRODUCT_CODE} code - The product code
    */
-  private removeProductFromScanner(code: PRODUCT) {
+  private removeProductFromScanner(code: PRODUCT_CODE) {
     this.scanner = this.scanner.filter(item => item.code !== code);
   }
 
@@ -305,10 +305,10 @@ export default class Checkout {
   /**
    * Discounts - Get item index from scanner by discount code
    *
-   * @param {DISCOUNT} code - The product code
+   * @param {DISCOUNT_CODE} code - The product code
    * @returns {number}
    */
-  private getItemIndexFromScannerByDiscountCode(code: DISCOUNT): number {
+  private getItemIndexFromScannerByDiscountCode(code: DISCOUNT_CODE): number {
     return this.scanner.findIndex(product => product.discounts.includes(code));
   }
 

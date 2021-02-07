@@ -62,7 +62,7 @@
 import { ref, defineComponent } from "vue";
 import { PricingRule } from "@/types";
 import EVENT from "@/enums/event";
-import PRODUCT from "@/enums/product";
+import PRODUCT_CODE from "@/enums/product";
 
 const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
@@ -77,16 +77,16 @@ export default defineComponent({
   },
 
   emits: {
-    [ADD_PRODUCT]: (code: PRODUCT) => {
-      if (Object.values(PRODUCT).includes(PRODUCT[code])) {
+    [ADD_PRODUCT]: (code: PRODUCT_CODE) => {
+      if (Object.values(PRODUCT_CODE).includes(PRODUCT_CODE[code])) {
         return true;
       } else {
         console.warn("Invalid payload for the add-product event");
         return false;
       }
     },
-    [REMOVE_PRODUCT]: (code: PRODUCT) => {
-      if (Object.values(PRODUCT).includes(PRODUCT[code])) {
+    [REMOVE_PRODUCT]: (code: PRODUCT_CODE) => {
+      if (Object.values(PRODUCT_CODE).includes(PRODUCT_CODE[code])) {
         return true;
       } else {
         console.warn("Invalid payload for the remove-product event");
