@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { mapActions, mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
 import PRODUCT_CODE from "@/enums/product";
 import ProductItem from "@/components/ProductItem.vue";
 
