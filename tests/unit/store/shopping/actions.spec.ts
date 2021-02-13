@@ -1,4 +1,4 @@
-import PRODUCT from "@/enums/product";
+import PRODUCT_CODE from "@/enums/product";
 import actions from "@/store/shopping/actions";
 import mockContext from "../../mocks/mockContext";
 import MUTATION_TYPE from "@/store/shopping/utils/mutation_type";
@@ -17,7 +17,7 @@ describe("Shopping store - Actions", () => {
     const context = mockContext();
 
     await actions.initShoppingCart(context);
-    actions.scanProduct(context, PRODUCT.CAP);
+    actions.scanProduct(context, PRODUCT_CODE.CAP);
 
     expect(context.commit).toHaveBeenCalledWith(SAVE_TOTAL_COST, 120);
     expect(context.commit).toHaveBeenCalledWith(SAVE_TOTAL_ITEMS, 10);
@@ -38,7 +38,7 @@ describe("Shopping store - Actions", () => {
     const context = mockContext();
 
     await actions.initShoppingCart(context);
-    actions.removeProduct(context, PRODUCT.CAP);
+    actions.removeProduct(context, PRODUCT_CODE.CAP);
 
     expect(context.commit).toHaveBeenCalledWith(SAVE_TOTAL_COST, 120);
     expect(context.commit).toHaveBeenCalledWith(SAVE_TOTAL_ITEMS, 10);

@@ -11,8 +11,9 @@
 </template>
 
 <script lang="ts">
-import { mapActions, mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
+import PRODUCT_CODE from "@/enums/product";
 import ProductItem from "@/components/ProductItem.vue";
 
 export default defineComponent({
@@ -34,11 +35,11 @@ export default defineComponent({
       removeProduct: "shopping/removeProduct"
     }),
 
-    handleAddProduct(code: string) {
+    handleAddProduct(code: PRODUCT_CODE) {
       this.scanProduct(code);
     },
 
-    handleRemoveProduct(code: string) {
+    handleRemoveProduct(code: PRODUCT_CODE) {
       this.removeProduct(code);
     }
   }

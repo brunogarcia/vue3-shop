@@ -1,8 +1,8 @@
-import PRODUCT from "@/enums/product";
+import PRODUCT_CODE from "@/enums/product";
 import Checkout from "@/middleware/checkout";
 import mockPrincingRules from "../mocks/mockPrincingRules";
 
-const { CAP, TSHIRT } = PRODUCT;
+const { CAP, TSHIRT } = PRODUCT_CODE;
 
 describe("Checkout - Promotions", () => {
   let checkout: Checkout;
