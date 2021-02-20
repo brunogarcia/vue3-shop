@@ -5,7 +5,7 @@ import mutations from "@/store/shopping/mutations";
 
 export default {
   namespaced: true,
-  state: initialState(),
+  state: initialState,
   actions,
   mutations,
   getters
