@@ -11,5 +11,5 @@ it("Shooping store - Initial state", () => {
     }
   };
 
-  expect(initialState()).toEqual(expected);
+  expect(initialState).toEqual(expected);
 });
