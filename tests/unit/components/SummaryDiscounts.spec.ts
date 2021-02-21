@@ -1,38 +1,14 @@
-import { shallowMount } from "@vue/test-utils";
+import { render } from "@testing-library/vue";
 import SummaryDiscounts from "@/components/SummaryDiscounts.vue";
-import mockStore from "../mocks/mockStore";
-
-const store = mockStore();
+import store from "../mocks/mockStore";
 
 describe("SummaryDiscounts.vue", () => {
   it("Must display the list of discounts", () => {
-    const wrapper = shallowMount(SummaryDiscounts, {
-      global: {
-        plugins: [store]
-      }
-    });
+    const { getByText } = render(SummaryDiscounts, { store });
 
-    const [firstItem, secondItem] = wrapper.findAll("li");
-
-    const firstItemLiteral = firstItem
-      .find('[data-test="discount-literal"]')
-      .text();
-
-    const firstItemTotal = firstItem
-      .find('[data-test="discount-total"]')
-      .text();
-
-    const secondItemLiteral = secondItem
-      .find('[data-test="discount-literal"]')
-      .text();
-
-    const secondItemTotal = secondItem
-      .find('[data-test="discount-total"]')
-      .text();
-
-    expect(firstItemLiteral).toBe("test literal 1");
-    expect(firstItemTotal).toBe("-3€");
-    expect(secondItemLiteral).toBe("test literal 2");
-    expect(secondItemTotal).toBe("-9€");
+    getByText(/test literal 1/i);
+    getByText(/-3€/i);
+    getByText(/test literal 2/i);
+    getByText(/-9€/i);
   });
 });

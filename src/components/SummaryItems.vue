@@ -1,10 +1,10 @@
 <template>
   <ul class="summary-items wrapper border">
     <li>
-      <span class="summary-items-number" data-test="summary-items-number">
+      <span class="summary-items-number" data-testid="summary-items-number">
         {{ totalItems }} Items
       </span>
-      <span class="summary-items-price" data-test="summary-items-price">
+      <span class="summary-items-price" data-testid="summary-items-price">
         {{ totalCost }}
         <span class="currency">€</span>
       </span>

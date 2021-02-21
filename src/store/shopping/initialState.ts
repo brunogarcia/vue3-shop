@@ -9,9 +9,9 @@ const summary: Summary = {
   totalCostWithDiscounts: 0
 };
 
-export default function initialState(): State {
-  return {
-    products,
-    summary
-  };
-}
+const initialState: State = {
+  products,
+  summary
+};
+
+export default initialState;

@@ -7,7 +7,8 @@
         <div class="product-description">
           <h1>{{ product.name }}</h1>
           <p class="product-code">
-            Product code <span data-test="product-code">{{ product.id }}</span>
+            Product code
+            <span>{{ product.id }}</span>
           </p>
         </div>
       </figure>
@@ -15,42 +16,43 @@
 
     <!--Quantity-->
     <div class="col-quantity">
-      <button class="count" data-test="remove-product" @click="removeProduct()">
+      <button
+        class="count"
+        data-testid="remove-product"
+        @click="removeProduct()"
+      >
         -
       </button>
       <input
         v-model.number="quantity"
         type="text"
         class="product-quantity"
-        data-test="product-quantity"
+        data-testid="product-quantity"
         disabled
       />
-      <button class="count" data-test="add-product" @click="addProduct()">
+      <button class="count" data-testid="add-product" @click="addProduct()">
         +
       </button>
     </div>
 
     <!--Price-->
     <div class="col-price">
-      <span class="product-price" data-test="product-price">
+      <span class="product-price">
         {{ product.price }}
       </span>
-      <span
-        class="product-currency currency"
-        data-test="product-price-currency"
-      >
+      <span class="product-currency currency">
         {{ product.currency }}
       </span>
     </div>
 
     <!--Price total-->
     <div class="col-total">
-      <span class="product-price" data-test="product-price-total">
+      <span class="product-price" data-testid="product-price-total">
         {{ priceTotal }}
       </span>
       <span
         class="product-currency currency"
-        data-test="product-price-total-currency"
+        data-testid="product-price-total-currency"
       >
         {{ product.currency }}
       </span>

@@ -1,5 +1,5 @@
 <template>
-  <ul class="products-list" data-test="products-list">
+  <ul class="products-list" data-testid="products-list">
     <ProductItem
       v-for="(product, id) in products"
       :key="id"
