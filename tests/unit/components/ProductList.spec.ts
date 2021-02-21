@@ -1,13 +1,13 @@
 import { render } from "@testing-library/vue";
 import ProductList from "@/components/ProductList.vue";
-import store from "../mocks/mockStore2";
+import store from "../mocks/mockStore";
 
 describe("ProductList.vue", () => {
   it("Must render the products", () => {
     const { getByText } = render(ProductList, { store });
 
-    expect(getByText("Cap")).toBeInTheDocument();
-    expect(getByText("Shirt")).toBeInTheDocument();
-    expect(getByText("Mug")).toBeInTheDocument();
+    getByText("Cap");
+    getByText("Shirt");
+    getByText("Mug");
   });
 });

@@ -1,19 +1,12 @@
-import { shallowMount } from "@vue/test-utils";
+import { render } from "@testing-library/vue";
 import SummaryTotal from "@/components/SummaryTotal.vue";
-import mockStore from "../mocks/mockStore";
-
-const store = mockStore();
+import store from "../mocks/mockStore";
 
 describe("SummaryTotal.vue", () => {
   it("Must display the total cost with discounts", () => {
-    const wrapper = shallowMount(SummaryTotal, {
-      global: {
-        plugins: [store]
-      }
-    });
+    const { getByText } = render(SummaryTotal, { store });
 
-    expect(wrapper.find('[data-test="summary-total-price"]').text()).toBe(
-      "23€"
-    );
+    getByText(/Total cost/i);
+    getByText(/23€/i);
   });
 });
