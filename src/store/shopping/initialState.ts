@@ -1,4 +1,4 @@
-import { State, Product, Summary } from "@/types";
+import { StateShopping, Product, Summary } from "@/types";
 
 const products: Product[] = [];
 
@@ -9,7 +9,7 @@ const summary: Summary = {
   totalCostWithDiscounts: 0
 };
 
-const initialState: State = {
+const initialState: StateShopping = {
   products,
   summary
 };

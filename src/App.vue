@@ -1,5 +1,6 @@
 <template>
   <main class="App">
+    <Modal />
     <Products />
     <Summary />
   </main>
@@ -8,6 +9,7 @@
 <script lang="ts">
 import { mapActions } from "vuex";
 import { defineComponent } from "vue";
+import Modal from "@/components/Modal.vue";
 import Products from "@/views/Products.vue";
 import Summary from "@/views/Summary.vue";
 
@@ -17,6 +19,7 @@ import "./assets/styles/commons.css";
 export default defineComponent({
   name: "App",
   components: {
+    Modal,
     Products,
     Summary
   },

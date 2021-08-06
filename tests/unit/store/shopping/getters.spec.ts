@@ -1,9 +1,9 @@
-import { State } from "@/types";
+import { StateShopping } from "@/types";
 import getters from "@/store/shopping/getters";
-import mockState from "../../mocks/mockState";
+import mockState from "../../mocks/mockShoppingState";
 
 describe("Shopping store - Getters", () => {
-  let state: State;
+  let state: StateShopping;
 
   beforeEach(() => {
     state = mockState();
