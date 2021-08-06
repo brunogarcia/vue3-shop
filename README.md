@@ -1,17 +1,17 @@
-# Lana Shop
+# Vue3 Shop
 
 ## Description
 
-Besides providing exceptional financial services, Lana also runs a physical store which sells (only) 3 products.
+The app runs a online shop which sells 3 products.
 
 The current prices of the products are the following:
 
 ```
-Code         | Name                |  Price
--------------------------------------------------
-CAP          | Lana Cap          |   5.00€
-TSHIRT       | Lana T-Shirt      |  20.00€
-MUG          | Lana Coffee Mug   |   7.50€
+Code         | Name         |  Price
+---------------------------------------
+CAP          | Cap          |   5.00€
+TSHIRT       | T-Shirt      |  20.00€
+MUG          | Coffee Mug   |   7.50€
 ```
 
 And we are offering users these discounts:

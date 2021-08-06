@@ -4,9 +4,18 @@ import DISCOUNT_CODE from "@/enums/discount";
 /**
  * Vuex
  */
-export interface State {
+export interface StateShopping {
   products: Product[];
   summary: Summary;
+}
+
+export interface StateModal {
+  display: boolean;
+}
+
+export interface State {
+  modal: StateModal;
+  shopping: StateShopping;
 }
 
 export interface Summary {
