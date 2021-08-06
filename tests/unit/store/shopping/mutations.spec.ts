@@ -2,7 +2,7 @@ import { StateShopping } from "@/types";
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
 import mutations from "@/store/shopping/mutations";
-import mockState from "../../mocks/mockState";
+import mockState from "../../mocks/mockShoppingState";
 
 const { CAP } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;

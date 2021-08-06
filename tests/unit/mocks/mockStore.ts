@@ -3,6 +3,9 @@ import store from "@/store";
 function mockStore(): object {
   return {
     modules: {
+      modal: {
+        display: false
+      },
       shopping: {
         ...store.modules.shopping,
         state: {

@@ -4,7 +4,7 @@ import DISCOUNT_CODE from "@/enums/discount";
 const { CAP, TSHIRT, MUG } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;
 
-export default function mockState() {
+export default function mockShoppingState() {
   return {
     products: [
       {
