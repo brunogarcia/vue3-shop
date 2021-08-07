@@ -57,6 +57,7 @@ npm run lint
     ├── assets (Contains the styles of the app)
     ├── components (Contains the Vue components)
     ├── enums (Contains the constants of the app)
+    ├── hooks (Contains the composable functions)
     ├── middleware (Contains the Checkout middleware)
     ├── store (Contains the Vuex modules)
     └── views (Contains the Vue views)
@@ -75,9 +76,9 @@ npm run lint
 
 - [chore] Create a Vue app with these plugins: Typescript, ESlint, Prettier, Vuex, Jest and PostCSS
 
-### API
+### Service
 
-- [feat] Create the products endpoint
+- [feat] Create the products service
 
 ### Checkout middleware
 
@@ -92,11 +93,26 @@ npm run lint
 
 ### Data management
 
+#### Modal
+
+- [feat] Create modal Vuex module
+- [feat] Create modal initial state
+- [feat] Create modal actions
+- [feat] Create modal mutations
+- [feat] Create modal getters
+
+#### Shopping
+
 - [feat] Create shopping Vuex module
 - [feat] Create shopping initial state
 - [feat] Create shopping actions
 - [feat] Create shopping mutations
 - [feat] Create shopping getters
+
+### Composable Functions
+
+- [feat] Create the composable functions for the modal module
+- [feat] Create the composable functions for the shopping module
 
 ### App UI
 
