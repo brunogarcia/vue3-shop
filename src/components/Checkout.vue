@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useSummary from "@/hooks/useSummary";
+import useShopping from "@/hooks/useShopping";
 import Title from "@/components/Title.vue";
 
 export default defineComponent({
@@ -55,7 +55,7 @@ export default defineComponent({
       discountsApplied,
       totalCostWithDiscounts,
       hasDiscountsApplied
-    } = useSummary();
+    } = useShopping();
 
     return {
       totalCost,

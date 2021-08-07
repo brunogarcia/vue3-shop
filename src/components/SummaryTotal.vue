@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import useModal from "@/hooks/useModal";
-import useSummary from "@/hooks/useSummary";
+import useShopping from "@/hooks/useShopping";
 import Modal from "@/components/Modal.vue";
 import Checkout from "@/components/Checkout.vue";
 
@@ -39,7 +39,7 @@ export default defineComponent({
 
   setup() {
     const { handleCheckout } = useModal();
-    const { hasTotalCost, totalCostWithDiscounts } = useSummary();
+    const { hasTotalCost, totalCostWithDiscounts } = useShopping();
 
     return {
       hasTotalCost,

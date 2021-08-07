@@ -14,13 +14,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useSummary from "@/hooks/useSummary";
+import useShopping from "@/hooks/useShopping";
 
 export default defineComponent({
   name: "SummaryItems",
 
   setup() {
-    const { totalCost, totalItems } = useSummary();
+    const { totalCost, totalItems } = useShopping();
 
     return {
       totalCost,

@@ -12,8 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions, mapGetters } from "vuex";
-import PRODUCT_CODE from "@/enums/product";
+import useShopping from "@/hooks/useShopping";
 import ProductItem from "@/components/ProductItem.vue";
 
 export default defineComponent({
@@ -23,25 +22,14 @@ export default defineComponent({
     ProductItem
   },
 
-  computed: {
-    ...mapGetters({
-      products: "shopping/products"
-    })
-  },
+  setup() {
+    const { products, handleAddProduct, handleRemoveProduct } = useShopping();
 
-  methods: {
-    ...mapActions({
-      scanProduct: "shopping/scanProduct",
-      removeProduct: "shopping/removeProduct"
-    }),
-
-    handleAddProduct(code: PRODUCT_CODE) {
-      this.scanProduct(code);
-    },
-
-    handleRemoveProduct(code: PRODUCT_CODE) {
-      this.removeProduct(code);
-    }
+    return {
+      products,
+      handleAddProduct,
+      handleRemoveProduct
+    };
   }
 });
 </script>
