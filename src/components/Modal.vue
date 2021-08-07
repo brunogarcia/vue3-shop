@@ -10,7 +10,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" @click="handleClose()">
+            <button type="button" @click="handleHideModal()">
               Confirm
             </button>
           </div>
@@ -22,25 +22,18 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions, mapGetters } from "vuex";
+import useModal from "@/hooks/useModal";
 
 export default defineComponent({
   name: "Modal",
 
-  computed: {
-    ...mapGetters({
-      displayModal: "modal/display"
-    })
-  },
+  setup() {
+    const { displayModal, handleHideModal } = useModal();
 
-  methods: {
-    ...mapActions({
-      updateModal: "modal/updateModal"
-    }),
-
-    handleClose() {
-      this.updateModal(false);
-    }
+    return {
+      displayModal,
+      handleHideModal
+    };
   }
 });
 </script>

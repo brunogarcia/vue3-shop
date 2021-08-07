@@ -8,7 +8,11 @@
         </span>
       </li>
     </ul>
-    <button :disabled="!hasTotalCost" type="button" @click="handleCheckout()">
+    <button
+      :disabled="!hasTotalCost"
+      type="button"
+      @click="handleDisplayModal()"
+    >
       Checkout
     </button>
 
@@ -38,12 +42,12 @@ export default defineComponent({
   },
 
   setup() {
-    const { handleCheckout } = useModal();
+    const { handleDisplayModal } = useModal();
     const { hasTotalCost, totalCostWithDiscounts } = useShopping();
 
     return {
       hasTotalCost,
-      handleCheckout,
+      handleDisplayModal,
       totalCostWithDiscounts
     };
   }
