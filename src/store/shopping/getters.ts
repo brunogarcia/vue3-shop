@@ -42,10 +42,30 @@ const discountsApplied = (state: StateShopping): TotalDiscountItem[] =>
 const totalCostWithDiscounts = (state: StateShopping): number =>
   state.summary.totalCostWithDiscounts;
 
+/**
+ * Check if the shopping cart has total cost
+ *
+ * @param {StateShopping} state - The shopping module state
+ * @returns {boolean}
+ */
+const hasTotalCost = (state: StateShopping): boolean =>
+  state.summary.totalCostWithDiscounts > 0;
+
+/**
+ * Check if the shopping cart has discounts applied
+ *
+ * @param {StateShopping} state - The shopping module state
+ * @returns {boolean}
+ */
+const hasDiscountsApplied = (state: StateShopping): boolean =>
+  state.summary.discountsApplied.length > 0;
+
 export default {
   products,
   totalCost,
   totalItems,
   discountsApplied,
-  totalCostWithDiscounts
+  totalCostWithDiscounts,
+  hasTotalCost,
+  hasDiscountsApplied
 };

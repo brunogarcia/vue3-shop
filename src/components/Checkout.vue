@@ -14,7 +14,7 @@
       </li>
     </ul>
 
-    <div v-if="displayDiscount()">
+    <div v-if="hasDiscountsApplied">
       <h2 class="checkout-title">Discounts</h2>
 
       <ul class="checkout-items border">
@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
+import useSummary from "@/hooks/useSummary";
 import Title from "@/components/Title.vue";
 
 export default defineComponent({
@@ -49,28 +49,20 @@ export default defineComponent({
   },
 
   setup() {
-    const store = useStore();
-
-    const totalCost = computed(() => store.getters["shopping/totalCost"]);
-
-    const totalItems = computed(() => store.getters["shopping/totalItems"]);
-
-    const discountsApplied = computed(
-      () => store.getters["shopping/discountsApplied"]
-    );
-
-    const totalCostWithDiscounts = computed(
-      () => store.getters["shopping/totalCostWithDiscounts"]
-    );
-
-    const displayDiscount = () => discountsApplied.value.length > 0;
+    const {
+      totalCost,
+      totalItems,
+      discountsApplied,
+      totalCostWithDiscounts,
+      hasDiscountsApplied
+    } = useSummary();
 
     return {
       totalCost,
       totalItems,
       discountsApplied,
       totalCostWithDiscounts,
-      displayDiscount
+      hasDiscountsApplied
     };
   }
 });

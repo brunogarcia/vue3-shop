@@ -67,4 +67,14 @@ describe("Shopping store - Getters", () => {
     const actual = getters.totalCostWithDiscounts(state);
     expect(actual).toBe(23);
   });
+
+  it("Check if the shopping cart has total cost", () => {
+    const actual = getters.hasTotalCost(state);
+    expect(actual).toBeTruthy();
+  });
+
+  it("Check if the shopping cart has discounts applied", () => {
+    const actual = getters.hasDiscountsApplied(state);
+    expect(actual).toBeTruthy();
+  });
 });
