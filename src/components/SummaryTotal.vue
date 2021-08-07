@@ -11,15 +11,29 @@
     <button :disabled="isDisabled()" type="button" @click="handleCheckout()">
       Checkout
     </button>
+
+    <teleport to="body">
+      <Modal>
+        <template v-slot:body>
+          <Checkout />
+        </template>
+      </Modal>
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
 import { mapActions, mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import Modal from "@/components/Modal.vue";
+import Checkout from "@/components/Checkout.vue";
 
 export default defineComponent({
   name: "SummaryTotal",
+  components: {
+    Modal,
+    Checkout
+  },
   computed: {
     ...mapGetters({
       totalCostWithDiscounts: "shopping/totalCostWithDiscounts"

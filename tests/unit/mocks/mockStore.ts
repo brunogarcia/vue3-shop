@@ -4,7 +4,7 @@ function mockStore(): object {
   return {
     modules: {
       modal: {
-        display: false
+        ...store.modules.modal
       },
       shopping: {
         ...store.modules.shopping,

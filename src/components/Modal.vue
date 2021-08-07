@@ -3,39 +3,10 @@
     <div v-if="displayModal" class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="modal-header">
-            <Title title="Resume" />
-          </div>
-
           <div class="modal-body">
-            <h2>Subtotal</h2>
-
-            <ul class="checkout-items border">
-              <li>
-                <span>{{ totalItems }} Items </span>
-                <span>
-                  {{ totalCost }}
-                  <span class="currency">€</span>
-                </span>
-              </li>
-            </ul>
-
-            <h2>Discounts</h2>
-
-            <ul class="checkout-items border">
-              <li v-for="item in discountsApplied" :key="item.code">
-                <span>{{ item.literal }}</span>
-                <span>-{{ item.total }}€</span>
-              </li>
-            </ul>
-
-            <h2>Total to pay</h2>
-            <ul class="checkout-items border">
-              <li>
-                <span>Total</span>
-                <span>{{ totalCostWithDiscounts }}€ </span>
-              </li>
-            </ul>
+            <slot name="body">
+              default body
+            </slot>
           </div>
 
           <div class="modal-footer">
@@ -52,22 +23,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
-import Title from "@/components/Title.vue";
 
 export default defineComponent({
   name: "Modal",
 
-  components: {
-    Title
-  },
-
   computed: {
     ...mapGetters({
-      displayModal: "modal/display",
-      totalCost: "shopping/totalCost",
-      totalItems: "shopping/totalItems",
-      discountsApplied: "shopping/discountsApplied",
-      totalCostWithDiscounts: "shopping/totalCostWithDiscounts"
+      displayModal: "modal/display"
     })
   },
 
@@ -114,25 +76,6 @@ export default defineComponent({
 
 .modal-body {
   margin: 20px 0;
-}
-
-.checkout-items {
-  margin-bottom: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid rgba(33, 34, 64, 0.16);
-}
-
-.checkout-items li {
-  display: flex;
-  justify-content: space-between;
-}
-
-.checkout-items li > *:nth-child(2) {
-  font-weight: bold;
-}
-
-.checkout-items li + li {
-  margin-top: 20px;
 }
 
 .modal-enter {
