@@ -13,17 +13,19 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import useSummary from "@/hooks/useSummary";
 
 export default defineComponent({
   name: "SummaryItems",
 
-  computed: {
-    ...mapGetters({
-      totalCost: "shopping/totalCost",
-      totalItems: "shopping/totalItems"
-    })
+  setup() {
+    const { totalCost, totalItems } = useSummary();
+
+    return {
+      totalCost,
+      totalItems
+    };
   }
 });
 </script>

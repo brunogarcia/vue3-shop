@@ -1,5 +1,5 @@
 <template>
-  <div class="summary-discounts wrapper-half border" v-if="displaySummary()">
+  <div v-if="hasDiscountsApplied" class="summary-discounts wrapper-half border">
     <h2>Discounts</h2>
     <ul>
       <li v-for="item in discountsApplied" :key="item.code">
@@ -11,20 +11,19 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import useSummary from "@/hooks/useSummary";
 
 export default defineComponent({
   name: "SummaryDiscounts",
-  computed: {
-    ...mapGetters({
-      discountsApplied: "shopping/discountsApplied"
-    })
-  },
-  methods: {
-    displaySummary() {
-      return this.discountsApplied.length > 0;
-    }
+
+  setup() {
+    const { discountsApplied, hasDiscountsApplied } = useSummary();
+
+    return {
+      discountsApplied,
+      hasDiscountsApplied
+    };
   }
 });
 </script>
