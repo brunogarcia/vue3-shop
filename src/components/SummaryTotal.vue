@@ -2,13 +2,13 @@
   <div class="summary-total wrapper">
     <ul>
       <li>
-        <span class="summary-total-cost">Total cost</span>
+        <span class="summary-total-cost">Total to pay</span>
         <span class="summary-total-price" data-test="summary-total-price">
           {{ totalCostWithDiscounts }}€
         </span>
       </li>
     </ul>
-    <button :disabled="isDisabled()" type="button" @click="handleCheckout()">
+    <button :disabled="!hasTotalCost" type="button" @click="handleCheckout()">
       Checkout
     </button>
 
@@ -23,34 +23,29 @@
 </template>
 
 <script lang="ts">
-import { mapActions, mapGetters } from "vuex";
 import { defineComponent } from "vue";
+import useModal from "@/hooks/useModal";
+import useSummary from "@/hooks/useSummary";
 import Modal from "@/components/Modal.vue";
 import Checkout from "@/components/Checkout.vue";
 
 export default defineComponent({
   name: "SummaryTotal",
+
   components: {
     Modal,
     Checkout
   },
-  computed: {
-    ...mapGetters({
-      totalCostWithDiscounts: "shopping/totalCostWithDiscounts"
-    })
-  },
-  methods: {
-    ...mapActions({
-      updateModal: "modal/updateModal"
-    }),
 
-    handleCheckout() {
-      this.updateModal(true);
-    },
+  setup() {
+    const { handleCheckout } = useModal();
+    const { hasTotalCost, totalCostWithDiscounts } = useSummary();
 
-    isDisabled() {
-      return this.totalCostWithDiscounts === 0;
-    }
+    return {
+      hasTotalCost,
+      handleCheckout,
+      totalCostWithDiscounts
+    };
   }
 });
 </script>
