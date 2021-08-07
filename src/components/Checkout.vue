@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 import Title from "@/components/Title.vue";
 
 export default defineComponent({
@@ -48,19 +48,30 @@ export default defineComponent({
     Title
   },
 
-  computed: {
-    ...mapGetters({
-      totalCost: "shopping/totalCost",
-      totalItems: "shopping/totalItems",
-      discountsApplied: "shopping/discountsApplied",
-      totalCostWithDiscounts: "shopping/totalCostWithDiscounts"
-    })
-  },
+  setup() {
+    const store = useStore();
 
-  methods: {
-    displayDiscount() {
-      return this.discountsApplied.length > 0;
-    }
+    const totalCost = computed(() => store.getters["shopping/totalCost"]);
+
+    const totalItems = computed(() => store.getters["shopping/totalItems"]);
+
+    const discountsApplied = computed(
+      () => store.getters["shopping/discountsApplied"]
+    );
+
+    const totalCostWithDiscounts = computed(
+      () => store.getters["shopping/totalCostWithDiscounts"]
+    );
+
+    const displayDiscount = () => discountsApplied.value.length > 0;
+
+    return {
+      totalCost,
+      totalItems,
+      discountsApplied,
+      totalCostWithDiscounts,
+      displayDiscount
+    };
   }
 });
 </script>
