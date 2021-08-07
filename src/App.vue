@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import { mapActions } from "vuex";
 import { defineComponent } from "vue";
+import useShopping from "@/hooks/useShopping";
 import Products from "@/views/Products.vue";
 import Summary from "@/views/Summary.vue";
 
@@ -16,17 +16,16 @@ import "./assets/styles/commons.css";
 
 export default defineComponent({
   name: "App",
+
   components: {
     Products,
     Summary
   },
-  created() {
-    this.initShoppingCart();
-  },
-  methods: {
-    ...mapActions({
-      initShoppingCart: "shopping/initShoppingCart"
-    })
+
+  setup() {
+    const { initShoppingCart } = useShopping();
+
+    initShoppingCart();
   }
 });
 </script>

@@ -25,6 +25,8 @@ export default function useShopping() {
     () => store.getters["shopping/hasDiscountsApplied"]
   );
 
+  const initShoppingCart = () => store.dispatch("shopping/initShoppingCart");
+
   const handleAddProduct = (code: PRODUCT_CODE) =>
     store.dispatch("shopping/scanProduct", code);
 
@@ -32,6 +34,7 @@ export default function useShopping() {
     store.dispatch("shopping/removeProduct", code);
 
   return {
+    initShoppingCart,
     products,
     totalCost,
     totalItems,
