@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useModal from "@/hooks/useModal";
+import useModal from "@/composable-functions/useModal";
 
 export default defineComponent({
   name: "Modal",

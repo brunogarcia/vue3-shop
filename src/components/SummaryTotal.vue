@@ -28,8 +28,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useModal from "@/hooks/useModal";
-import useShoppingSummary from "@/hooks/useShoppingSummary";
+import useModal from "@/composable-functions/useModal";
+import useShoppingSummary from "@/composable-functions/useShoppingSummary";
 import Modal from "@/components/Modal.vue";
 import Checkout from "@/components/Checkout.vue";
 

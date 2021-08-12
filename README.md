@@ -57,7 +57,7 @@ npm run lint
     ├── assets (Contains the styles of the app)
     ├── components (Contains the Vue components)
     ├── enums (Contains the constants of the app)
-    ├── hooks (Contains the composable functions)
+    ├── composable-functions (Contains the composable functions)
     ├── middleware (Contains the Checkout middleware)
     ├── store (Contains the Vuex modules)
     └── views (Contains the Vue views)
