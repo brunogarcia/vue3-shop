@@ -1,9 +1,9 @@
 import { ActionContext } from "vuex";
 import API from "@/api";
 import PRODUCT_CODE from "@/enums/product";
+import SHOPPING_MUTATION from "@/enums/shopping";
 import Checkout from "@/middleware/checkout";
 import { Product, PricingRule, State, StateShopping } from "@/types";
-import MutationType from "@/store/shopping/utils/mutation_type";
 
 let checkout: Checkout;
 
@@ -13,7 +13,7 @@ const {
   SAVE_TOTAL_ITEMS,
   SAVE_DISCOUNTS_APPLIED,
   SAVE_TOTAL_COST_WITH_DISCOUNTS
-} = MutationType;
+} = SHOPPING_MUTATION;
 
 /**
  * Init shopping cart

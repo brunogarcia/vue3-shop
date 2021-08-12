@@ -1,7 +1,7 @@
 import { StateModal } from "@/types";
-import MutationType from "@/store/modal/utils/mutation_type";
+import MODAL_MUTATION from "@/enums/modal";
 
-const { DISPLAY } = MutationType;
+const { DISPLAY } = MODAL_MUTATION;
 
 export default {
   [DISPLAY](state: StateModal, payload: boolean) {

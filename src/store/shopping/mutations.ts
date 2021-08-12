@@ -1,5 +1,5 @@
+import SHOPPING_MUTATION from "@/enums/shopping";
 import { StateShopping, Product, TotalDiscountItem } from "@/types";
-import MutationType from "@/store/shopping/utils/mutation_type";
 
 const {
   SAVE_PRODUCTS,
@@ -7,7 +7,7 @@ const {
   SAVE_TOTAL_ITEMS,
   SAVE_DISCOUNTS_APPLIED,
   SAVE_TOTAL_COST_WITH_DISCOUNTS
-} = MutationType;
+} = SHOPPING_MUTATION;
 
 export default {
   [SAVE_PRODUCTS](state: StateShopping, payload: Product[]) {
