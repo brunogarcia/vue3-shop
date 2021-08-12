@@ -60,6 +60,7 @@ npm run lint
     ├── composable-functions (Contains the composable functions)
     ├── middleware (Contains the Checkout middleware)
     ├── store (Contains the Vuex modules)
+    ├── utils (Contains the utils of the app)
     └── views (Contains the Vue views)
 └── tests
     └── unit (Contains the unit tests of the app)
