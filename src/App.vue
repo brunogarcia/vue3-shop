@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useInitShopping from "@/hooks/useInitShopping";
+import useShoppingInit from "@/hooks/useShoppingInit";
 import Products from "@/views/Products.vue";
 import Summary from "@/views/Summary.vue";
 
@@ -23,7 +23,7 @@ export default defineComponent({
   },
 
   setup() {
-    useInitShopping();
+    useShoppingInit();
   }
 });
 </script>

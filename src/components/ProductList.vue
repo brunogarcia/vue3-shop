@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useShopping from "@/hooks/useShopping";
+import useShoppingProducts from "@/hooks/useShoppingProducts";
 import ProductItem from "@/components/ProductItem.vue";
 
 export default defineComponent({
@@ -23,7 +23,11 @@ export default defineComponent({
   },
 
   setup() {
-    const { products, handleAddProduct, handleRemoveProduct } = useShopping();
+    const {
+      products,
+      handleAddProduct,
+      handleRemoveProduct
+    } = useShoppingProducts();
 
     return {
       products,
