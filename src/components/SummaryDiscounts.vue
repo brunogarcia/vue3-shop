@@ -12,13 +12,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useShopping from "@/hooks/useShopping";
+import useShoppingSummary from "@/hooks/useShoppingSummary";
 
 export default defineComponent({
   name: "SummaryDiscounts",
 
   setup() {
-    const { discountsApplied, hasDiscountsApplied } = useShopping();
+    const { discountsApplied, hasDiscountsApplied } = useShoppingSummary();
 
     return {
       discountsApplied,

@@ -1,11 +1,8 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
-import PRODUCT_CODE from "@/enums/product";
 
 export default function useShopping() {
   const store = useStore();
-
-  const products = computed(() => store.getters["shopping/products"]);
 
   const totalCost = computed(() => store.getters["shopping/totalCost"]);
 
@@ -24,22 +21,12 @@ export default function useShopping() {
   const hasDiscountsApplied = computed(
     () => store.getters["shopping/hasDiscountsApplied"]
   );
-
-  const handleAddProduct = (code: PRODUCT_CODE) =>
-    store.dispatch("shopping/scanProduct", code);
-
-  const handleRemoveProduct = (code: PRODUCT_CODE) =>
-    store.dispatch("shopping/removeProduct", code);
-
   return {
-    products,
     totalCost,
     totalItems,
     discountsApplied,
     totalCostWithDiscounts,
     hasTotalCost,
-    hasDiscountsApplied,
-    handleAddProduct,
-    handleRemoveProduct
+    hasDiscountsApplied
   };
 }
