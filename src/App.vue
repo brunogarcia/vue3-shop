@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useShopping from "@/hooks/useShopping";
+import useInitShopping from "@/hooks/useInitShopping";
 import Products from "@/views/Products.vue";
 import Summary from "@/views/Summary.vue";
 
@@ -23,14 +23,12 @@ export default defineComponent({
   },
 
   setup() {
-    const { initShoppingCart } = useShopping();
-
-    initShoppingCart();
+    useInitShopping();
   }
 });
 </script>
 
-<style>
+<style scoped>
 .App {
   position: fixed;
   top: 50%;
