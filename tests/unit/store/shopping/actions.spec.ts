@@ -1,14 +1,14 @@
 import PRODUCT_CODE from "@/enums/product";
+import SHOPPING_MUTATION from "@/enums/shopping";
 import actions from "@/store/shopping/actions";
 import mockContext from "../../mocks/mockContext";
-import MUTATION_TYPE from "@/store/shopping/utils/mutation_type";
 
 const {
   SAVE_TOTAL_COST,
   SAVE_TOTAL_ITEMS,
   SAVE_DISCOUNTS_APPLIED,
   SAVE_TOTAL_COST_WITH_DISCOUNTS
-} = MUTATION_TYPE;
+} = SHOPPING_MUTATION;
 
 jest.mock("@/middleware/checkout");
 

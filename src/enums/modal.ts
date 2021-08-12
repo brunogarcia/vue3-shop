@@ -1,0 +1,5 @@
+enum MODAL_MUTATION {
+  DISPLAY = "DISPLAY"
+}
+
+export default MODAL_MUTATION;

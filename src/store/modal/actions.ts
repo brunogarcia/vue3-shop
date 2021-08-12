@@ -1,8 +1,8 @@
 import { ActionContext } from "vuex";
 import { State, StateModal } from "@/types";
-import MutationType from "@/store/modal/utils/mutation_type";
+import MODAL_MUTATION from "@/enums/modal";
 
-const { DISPLAY } = MutationType;
+const { DISPLAY } = MODAL_MUTATION;
 
 /**
  * Update the modal state
