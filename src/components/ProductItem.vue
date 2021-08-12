@@ -63,6 +63,7 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
 import { PricingRule } from "@/types";
+import isValidProductCode from "@/utils/isValidProductCode";
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
 
@@ -80,7 +81,7 @@ export default defineComponent({
 
   emits: {
     [ADD_PRODUCT]: (code: PRODUCT_CODE) => {
-      if (Object.values(PRODUCT_CODE).includes(PRODUCT_CODE[code])) {
+      if (isValidProductCode(code)) {
         return true;
       } else {
         console.warn("Invalid payload for the add-product event");
@@ -88,7 +89,7 @@ export default defineComponent({
       }
     },
     [REMOVE_PRODUCT]: (code: PRODUCT_CODE) => {
-      if (Object.values(PRODUCT_CODE).includes(PRODUCT_CODE[code])) {
+      if (isValidProductCode(code)) {
         return true;
       } else {
         console.warn("Invalid payload for the remove-product event");
