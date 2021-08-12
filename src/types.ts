@@ -9,12 +9,7 @@ export interface StateShopping {
   summary: Summary;
 }
 
-export interface StateModal {
-  display: boolean;
-}
-
 export interface State {
-  modal: StateModal;
   shopping: StateShopping;
 }
 

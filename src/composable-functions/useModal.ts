@@ -1,14 +1,11 @@
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { ref } from "vue";
 
 export default function useModal() {
-  const store = useStore();
+  const displayModal = ref(false);
 
-  const displayModal = computed(() => store.getters["modal/display"]);
+  const handleHideModal = () => (displayModal.value = false);
 
-  const handleHideModal = () => store.dispatch("modal/updateModal", false);
-
-  const handleDisplayModal = () => store.dispatch("modal/updateModal", true);
+  const handleDisplayModal = () => (displayModal.value = true);
 
   return {
     displayModal,

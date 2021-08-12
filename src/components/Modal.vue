@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div v-if="displayModal" class="modal-mask">
+    <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-body">
@@ -22,16 +22,19 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useModal from "@/composable-functions/useModal";
+import EVENT from "@/enums/event";
+
+const { HIDE_MODAL } = EVENT;
 
 export default defineComponent({
   name: "Modal",
 
-  setup() {
-    const { displayModal, handleHideModal } = useModal();
+  setup(props, { emit }) {
+    const handleHideModal = () => {
+      emit(HIDE_MODAL);
+    };
 
     return {
-      displayModal,
       handleHideModal
     };
   }
