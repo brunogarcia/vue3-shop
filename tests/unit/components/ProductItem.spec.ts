@@ -99,7 +99,7 @@ describe("ProductItem.vue", () => {
   });
 
   it("Add a product must emit an event", async () => {
-    const expected = ["addProduct", [["CAP"], ["CAP"]]];
+    const expected = ["add-product", [["CAP"], ["CAP"]]];
 
     const { getByTestId, emitted } = render(ProductItem, {
       props: {
@@ -158,8 +158,8 @@ describe("ProductItem.vue", () => {
   });
 
   it("Remove a product must emit an event", async () => {
-    const expectedEventAdd = ["addProduct", [["CAP"], ["CAP"]]];
-    const expectedEventRemove = ["removeProduct", [["CAP"]]];
+    const expectedEventAdd = ["add-product", [["CAP"], ["CAP"]]];
+    const expectedEventRemove = ["remove-product", [["CAP"]]];
 
     const { getByTestId, emitted } = render(ProductItem, {
       props: {
