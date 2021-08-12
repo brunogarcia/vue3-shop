@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, computed, defineComponent } from "vue";
 import { PricingRule } from "@/types";
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
@@ -99,22 +99,17 @@ export default defineComponent({
 
   setup(props, { emit }) {
     const quantity = ref(0);
-    const priceTotal = ref(0);
 
-    const updatePriceTotal = () => {
-      priceTotal.value = props.product.price * quantity.value;
-    };
+    const priceTotal = computed(() => props.product.price * quantity.value);
 
     const addProduct = () => {
       quantity.value++;
-      updatePriceTotal();
       emit(ADD_PRODUCT, props.product.code);
     };
 
     const removeProduct = () => {
       if (quantity.value > 0) {
         quantity.value -= 1;
-        updatePriceTotal();
         emit(REMOVE_PRODUCT, props.product.code);
       }
     };
