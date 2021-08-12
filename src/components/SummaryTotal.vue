@@ -17,7 +17,7 @@
     </button>
 
     <teleport to="body">
-      <Modal>
+      <Modal v-if="displayModal" @hide-modal="handleHideModal">
         <template v-slot:body>
           <Checkout />
         </template>
@@ -28,10 +28,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useModal from "@/composable-functions/useModal";
-import useShoppingSummary from "@/composable-functions/useShoppingSummary";
 import Modal from "@/components/Modal.vue";
 import Checkout from "@/components/Checkout.vue";
+import useModal from "@/composable-functions/useModal";
+import useShoppingSummary from "@/composable-functions/useShoppingSummary";
 
 export default defineComponent({
   name: "SummaryTotal",
@@ -42,12 +42,14 @@ export default defineComponent({
   },
 
   setup() {
-    const { handleDisplayModal } = useModal();
+    const { displayModal, handleDisplayModal, handleHideModal } = useModal();
     const { hasTotalCost, totalCostWithDiscounts } = useShoppingSummary();
 
     return {
-      hasTotalCost,
+      displayModal,
       handleDisplayModal,
+      handleHideModal,
+      hasTotalCost,
       totalCostWithDiscounts
     };
   }

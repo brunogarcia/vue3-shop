@@ -7,7 +7,6 @@ export default function mockContext() {
     state: mockShoppingState(),
     getters: jest.fn(),
     rootState: {
-      modal: { display: false },
       shopping: { ...mockShoppingState() }
     },
     rootGetters: jest.fn()
