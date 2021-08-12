@@ -1,8 +1,8 @@
 <template>
   <ul class="products-list" data-testid="products-list">
     <ProductItem
-      v-for="(product, id) in products"
-      :key="id"
+      v-for="product in products"
+      :key="product.id"
       :product="product"
       @add-product="handleAddProduct"
       @remove-product="handleRemoveProduct"
