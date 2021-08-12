@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useShoppingInit from "@/hooks/useShoppingInit";
+import useShoppingInit from "@/composable-functions/useShoppingInit";
 import Products from "@/views/Products.vue";
 import Summary from "@/views/Summary.vue";
 

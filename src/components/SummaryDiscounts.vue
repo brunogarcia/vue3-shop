@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import useShoppingSummary from "@/hooks/useShoppingSummary";
+import useShoppingSummary from "@/composable-functions/useShoppingSummary";
 
 export default defineComponent({
   name: "SummaryDiscounts",
