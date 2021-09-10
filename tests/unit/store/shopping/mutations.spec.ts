@@ -8,10 +8,10 @@ const { CAP } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;
 
 describe("Shopping store - Getters", () => {
-  let state: StateShopping;
+  let stateShopping: StateShopping;
 
   beforeEach(() => {
-    state = mockState();
+    stateShopping = mockState();
   });
 
   it("Save products", () => {
@@ -26,7 +26,7 @@ describe("Shopping store - Getters", () => {
       }
     ];
 
-    mutations.SAVE_PRODUCTS(state, [
+    mutations.SAVE_PRODUCTS(stateShopping, [
       {
         id: "12345",
         code: CAP,
@@ -37,31 +37,31 @@ describe("Shopping store - Getters", () => {
       }
     ]);
 
-    expect(state.products).toEqual(expected);
+    expect(stateShopping.products).toEqual(expected);
   });
 
   it("Save total cost", () => {
-    mutations.SAVE_TOTAL_COST(state, 80);
-    expect(state.summary.totalCost).toBe(80);
+    mutations.SAVE_TOTAL_COST(stateShopping, 80);
+    expect(stateShopping.summary.totalCost).toBe(80);
   });
 
   it("Save total items", () => {
-    mutations.SAVE_TOTAL_ITEMS(state, 10);
-    expect(state.summary.totalItems).toBe(10);
+    mutations.SAVE_TOTAL_ITEMS(stateShopping, 10);
+    expect(stateShopping.summary.totalItems).toBe(10);
   });
 
   it("Save discount applied", () => {
     const expected = [{ code: "BULK", literal: "test", total: 20 }];
 
-    mutations.SAVE_DISCOUNTS_APPLIED(state, [
+    mutations.SAVE_DISCOUNTS_APPLIED(stateShopping, [
       { code: BULK, literal: "test", total: 20 }
     ]);
 
-    expect(state.summary.discountsApplied).toEqual(expected);
+    expect(stateShopping.summary.discountsApplied).toEqual(expected);
   });
 
   it("Save total cost with discounts", () => {
-    mutations.SAVE_TOTAL_COST_WITH_DISCOUNTS(state, 46);
-    expect(state.summary.totalCostWithDiscounts).toBe(46);
+    mutations.SAVE_TOTAL_COST_WITH_DISCOUNTS(stateShopping, 46);
+    expect(stateShopping.summary.totalCostWithDiscounts).toBe(46);
   });
 });
