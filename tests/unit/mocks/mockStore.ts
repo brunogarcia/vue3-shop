@@ -1,10 +1,10 @@
-import store from "@/store";
+import shopping from "@/store/shopping";
 
 function mockStore(): object {
   return {
     modules: {
       shopping: {
-        ...store.modules.shopping,
+        ...shopping,
         state: {
           products: [
             {
