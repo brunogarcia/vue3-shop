@@ -1,4 +1,5 @@
-import { StateShopping, Product, TotalDiscountItem } from "@/types";
+import { GetterTree } from "vuex";
+import { StateShopping, Product, TotalDiscountItem, StateRoot } from "@/types";
 
 /**
  * Products
@@ -60,7 +61,11 @@ const hasTotalCost = (state: StateShopping): boolean =>
 const hasDiscountsApplied = (state: StateShopping): boolean =>
   state.summary.discountsApplied.length > 0;
 
-export default {
+/**
+ * Shopping getters
+ * @returns {GetterTree}
+ */
+const getters: GetterTree<StateShopping, StateRoot> = {
   products,
   totalCost,
   totalItems,
@@ -69,3 +74,5 @@ export default {
   hasTotalCost,
   hasDiscountsApplied
 };
+
+export default getters;

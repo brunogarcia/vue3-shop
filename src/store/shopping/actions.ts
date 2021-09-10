@@ -1,9 +1,9 @@
-import { ActionContext } from "vuex";
+import { ActionContext, ActionTree } from "vuex";
 import API from "@/api";
 import PRODUCT_CODE from "@/enums/product";
 import SHOPPING_MUTATION from "@/enums/shopping";
 import Checkout from "@/middleware/checkout";
-import { Product, PricingRule, State, StateShopping } from "@/types";
+import { Product, PricingRule, StateRoot, StateShopping } from "@/types";
 
 let checkout: Checkout;
 
@@ -22,7 +22,7 @@ const {
  */
 async function initShoppingCart({
   commit
-}: ActionContext<StateShopping, State>) {
+}: ActionContext<StateShopping, StateRoot>) {
   try {
     const products: Product[] = await API.products();
 
@@ -48,7 +48,7 @@ async function initShoppingCart({
  * @param {PRODUCT} code - The product code
  */
 function scanProduct(
-  { commit }: ActionContext<StateShopping, State>,
+  { commit }: ActionContext<StateShopping, StateRoot>,
   code: PRODUCT_CODE
 ) {
   try {
@@ -74,7 +74,7 @@ function scanProduct(
  * @param {PRODUCT} code - The product code
  */
 function removeProduct(
-  { commit }: ActionContext<StateShopping, State>,
+  { commit }: ActionContext<StateShopping, StateRoot>,
   code: PRODUCT_CODE
 ) {
   try {
@@ -95,8 +95,10 @@ function removeProduct(
   }
 }
 
-export default {
+const actions: ActionTree<StateShopping, StateRoot> = {
   initShoppingCart,
   scanProduct,
   removeProduct
 };
+
+export default actions;

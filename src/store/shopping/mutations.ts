@@ -1,5 +1,6 @@
 import SHOPPING_MUTATION from "@/enums/shopping";
 import { StateShopping, Product, TotalDiscountItem } from "@/types";
+import { MutationTree } from "vuex";
 
 const {
   SAVE_PRODUCTS,
@@ -9,7 +10,7 @@ const {
   SAVE_TOTAL_COST_WITH_DISCOUNTS
 } = SHOPPING_MUTATION;
 
-export default {
+const mutations: MutationTree<StateShopping> = {
   [SAVE_PRODUCTS](state: StateShopping, payload: Product[]) {
     state.products = payload;
   },
@@ -30,3 +31,5 @@ export default {
     state.summary.totalCostWithDiscounts = payload;
   }
 };
+
+export default mutations;
