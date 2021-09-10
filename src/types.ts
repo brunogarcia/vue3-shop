@@ -9,7 +9,7 @@ export interface StateShopping {
   summary: Summary;
 }
 
-export interface State {
+export interface StateRoot {
   shopping: StateShopping;
 }
 
