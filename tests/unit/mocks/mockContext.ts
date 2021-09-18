@@ -1,14 +1,14 @@
-import { StateRoot, StateShopping } from "@/types";
+import { StateRoot } from "@/types";
 import { ActionContext } from "vuex";
 import mockShoppingState from "./mockShoppingState";
 
-const mockContext: ActionContext<StateShopping, StateRoot> = {
+const mockContext: ActionContext<StateRoot, StateRoot> = {
   dispatch: jest.fn(),
   commit: jest.fn(),
   state: mockShoppingState(),
   getters: jest.fn(),
   rootState: {
-    shopping: { ...mockShoppingState() }
+    ...mockShoppingState()
   },
   rootGetters: jest.fn()
 };

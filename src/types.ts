@@ -1,24 +1,8 @@
+import { Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
+
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
-
-/**
- * Vuex
- */
-export interface StateShopping {
-  products: Product[];
-  summary: Summary;
-}
-
-export interface StateRoot {
-  shopping: StateShopping;
-}
-
-export interface Summary {
-  totalCost: number;
-  totalItems: number;
-  totalCostWithDiscounts: number;
-  discountsApplied: TotalDiscountItem[];
-}
+import { Actions, Mutations, Getters } from "@/store/shopping/types";
 
 /**
  * Checkout
@@ -52,3 +36,40 @@ export interface TotalDiscountItem {
   literal: string;
   total: number;
 }
+
+/**
+ * Vuex
+ */
+
+export interface Summary {
+  totalCost: number;
+  totalItems: number;
+  totalCostWithDiscounts: number;
+  discountsApplied: TotalDiscountItem[];
+}
+
+export interface StateRoot {
+  products: Product[];
+  summary: Summary;
+}
+
+export type Store = Omit<
+  VuexStore<StateRoot>,
+  "getters" | "commit" | "dispatch"
+> & {
+  commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
+    key: K,
+    payload: P,
+    options?: CommitOptions
+  ): ReturnType<Mutations[K]>;
+} & {
+  dispatch<K extends keyof Actions>(
+    key: K,
+    payload: Parameters<Actions[K]>[1],
+    options?: DispatchOptions
+  ): ReturnType<Actions[K]>;
+} & {
+  getters: {
+    [K in keyof Getters]: ReturnType<Getters[K]>;
+  };
+};

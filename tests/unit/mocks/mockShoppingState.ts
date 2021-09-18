@@ -1,11 +1,11 @@
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
-import { StateShopping } from "@/types";
+import { StateRoot } from "@/types";
 
 const { CAP, TSHIRT, MUG } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;
 
-export default function mockShoppingState(): StateShopping {
+export default function mockShoppingState(): StateRoot {
   return {
     products: [
       {
