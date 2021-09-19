@@ -1,10 +1,9 @@
-import { render } from "@testing-library/vue";
+import renderComponent from "../utils/renderComponent";
 import ProductList from "@/components/ProductList.vue";
-import store from "../mocks/mockStore";
 
 describe("ProductList.vue", () => {
   it("Must render the products", () => {
-    const { getByText } = render(ProductList, { store });
+    const { getByText } = renderComponent(ProductList);
 
     getByText("Cap");
     getByText("Shirt");

@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 
 import { GETTERS } from "@/enums/shopping";
 import { TotalDiscountItem } from "@/types";

@@ -1,5 +1,5 @@
 import { onMounted } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
 
 import { ACTIONS } from "@/enums/shopping";
 
