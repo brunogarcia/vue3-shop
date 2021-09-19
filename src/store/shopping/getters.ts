@@ -1,65 +1,68 @@
 import { GetterTree } from "vuex";
-import { StateShopping, Product, TotalDiscountItem, StateRoot } from "@/types";
 
-const getters: GetterTree<StateShopping, StateRoot> = {
+import { GETTERS } from "@/enums/shopping";
+import { Getters } from "@/store/shopping/types";
+import { StateRoot, Product, TotalDiscountItem } from "@/types";
+
+const getters: GetterTree<StateRoot, StateRoot> & Getters = {
   /**
    * Products
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {Product[]}
    */
-  products: (state: StateShopping): Product[] => state.products,
+  [GETTERS.PRODUCTS]: (state: StateRoot): Product[] => state.products,
 
   /**
    * Total cost
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {number}
    */
-  totalCost: (state: StateShopping): number => state.summary.totalCost,
+  [GETTERS.TOTAL_COST]: (state: StateRoot): number => state.summary.totalCost,
 
   /**
    * Total items
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {number}
    */
-  totalItems: (state: StateShopping): number => state.summary.totalItems,
+  [GETTERS.TOTAL_ITEMS]: (state: StateRoot): number => state.summary.totalItems,
 
   /**
    * Discounts applied
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {string[]}
    */
-  discountsApplied: (state: StateShopping): TotalDiscountItem[] =>
+  [GETTERS.DISCOUNTS_APPLIED]: (state: StateRoot): TotalDiscountItem[] =>
     state.summary.discountsApplied,
 
   /**
    * Total cost with discounts
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {number}
    */
-  totalCostWithDiscounts: (state: StateShopping): number =>
+  [GETTERS.TOTAL_COST_WITH_DISCOUNTS]: (state: StateRoot): number =>
     state.summary.totalCostWithDiscounts,
 
   /**
    * Check if the shopping cart has total cost
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {boolean}
    */
-  hasTotalCost: (state: StateShopping): boolean =>
+  [GETTERS.HAS_TOTAL_COST]: (state: StateRoot): boolean =>
     state.summary.totalCostWithDiscounts > 0,
 
   /**
    * Check if the shopping cart has discounts applied
    *
-   * @param {StateShopping} state - The shopping module state
+   * @param {StateRoot} state - The root state
    * @returns {boolean}
    */
-  hasDiscountsApplied: (state: StateShopping): boolean =>
+  [GETTERS.HAS_DISCOUNTS_APPLIED]: (state: StateRoot): boolean =>
     state.summary.discountsApplied.length > 0
 };
 

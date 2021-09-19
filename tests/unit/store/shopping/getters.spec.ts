@@ -1,15 +1,13 @@
-import { StateRoot, StateShopping } from "@/types";
+import { StateRoot } from "@/types";
 import getters from "@/store/shopping/getters";
 import mockState from "../../mocks/mockShoppingState";
 
 describe("Shopping store - Getters", () => {
   let stateRoot: StateRoot;
-  let stateShopping: StateShopping;
 
   beforeEach(() => {
-    stateShopping = mockState();
     stateRoot = {
-      shopping: stateShopping
+      ...mockState()
     };
   });
 
@@ -41,18 +39,17 @@ describe("Shopping store - Getters", () => {
       }
     ];
 
-    const actual = getters.products(stateShopping, getters, stateRoot, {});
-
+    const actual = getters.PRODUCTS(stateRoot);
     expect(actual).toEqual(expected);
   });
 
   it("Total cost", () => {
-    const actual = getters.totalCost(stateShopping, getters, stateRoot, {});
+    const actual = getters.TOTAL_COST(stateRoot);
     expect(actual).toBe(40);
   });
 
   it("Total items", () => {
-    const actual = getters.totalItems(stateShopping, getters, stateRoot, {});
+    const actual = getters.TOTAL_ITEMS(stateRoot);
     expect(actual).toBe(5);
   });
 
@@ -62,38 +59,23 @@ describe("Shopping store - Getters", () => {
       { code: "BULK", literal: "test literal 2", total: 9 }
     ];
 
-    const actual = getters.discountsApplied(
-      stateShopping,
-      getters,
-      stateRoot,
-      {}
-    );
+    const actual = getters.DISCOUNTS_APPLIED(stateRoot);
 
     expect(actual).toEqual(expected);
   });
 
   it("Total cost with discounts", () => {
-    const actual = getters.totalCostWithDiscounts(
-      stateShopping,
-      getters,
-      stateRoot,
-      {}
-    );
+    const actual = getters.TOTAL_COST_WITH_DISCOUNTS(stateRoot);
     expect(actual).toBe(23);
   });
 
   it("Check if the shopping cart has total cost", () => {
-    const actual = getters.hasTotalCost(stateShopping, getters, stateRoot, {});
+    const actual = getters.HAS_TOTAL_COST(stateRoot);
     expect(actual).toBeTruthy();
   });
 
   it("Check if the shopping cart has discounts applied", () => {
-    const actual = getters.hasDiscountsApplied(
-      stateShopping,
-      getters,
-      stateRoot,
-      {}
-    );
+    const actual = getters.HAS_DISCOUNTS_APPLIED(stateRoot);
     expect(actual).toBeTruthy();
   });
 });

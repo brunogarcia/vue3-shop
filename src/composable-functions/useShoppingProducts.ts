@@ -1,17 +1,20 @@
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
+
 import PRODUCT_CODE from "@/enums/product";
+import { ACTIONS, GETTERS } from "@/enums/shopping";
+import { Product } from "@/types";
 
 export default function useShopping() {
   const store = useStore();
 
-  const products = computed(() => store.getters["shopping/products"]);
+  const products = computed((): Product[] => store.getters[GETTERS.PRODUCTS]);
 
-  const handleAddProduct = (code: PRODUCT_CODE) =>
-    store.dispatch("shopping/scanProduct", code);
+  const handleAddProduct = (code: PRODUCT_CODE): Promise<void> =>
+    store.dispatch(ACTIONS.SCAN_PRODUCT, code);
 
-  const handleRemoveProduct = (code: PRODUCT_CODE) =>
-    store.dispatch("shopping/removeProduct", code);
+  const handleRemoveProduct = (code: PRODUCT_CODE): Promise<void> =>
+    store.dispatch(ACTIONS.REMOVE_PRODUCT, code);
 
   return {
     products,

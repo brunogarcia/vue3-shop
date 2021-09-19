@@ -1,14 +1,13 @@
-import { ModuleTree, StoreOptions } from "vuex";
-import shopping from "@/store/shopping";
-import { StateRoot, StateShopping } from "@/types";
+import { InjectionKey } from "vue";
+import { createStore, useStore as baseUseStore, Store } from "vuex";
 
-const modules: ModuleTree<StateRoot> = {
-  shopping
-};
+import { StateRoot } from "@/types";
+import Shopping from "@/store/shopping";
 
-const store: StoreOptions<StateShopping> = {
-  strict: true,
-  modules
-};
+export const key: InjectionKey<Store<StateRoot>> = Symbol();
 
-export default store;
+export const store = createStore<StateRoot>(Shopping);
+
+export function useStore() {
+  return baseUseStore(key);
+}

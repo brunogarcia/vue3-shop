@@ -1,9 +1,8 @@
 import { createApp } from "vue";
-import { createStore } from "vuex";
 
-import App from "./App.vue";
-import store from "./store";
+import App from "@/App.vue";
+import { store, key } from "@/store";
 
 createApp(App)
-  .use(createStore(store))
+  .use(store, key)
   .mount("#app");

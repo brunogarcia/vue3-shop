@@ -1,26 +1,32 @@
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "@/store";
+
+import { GETTERS } from "@/enums/shopping";
+import { TotalDiscountItem } from "@/types";
 
 export default function useShopping() {
   const store = useStore();
 
-  const totalCost = computed(() => store.getters["shopping/totalCost"]);
+  const totalCost = computed((): number => store.getters[GETTERS.TOTAL_COST]);
 
-  const totalItems = computed(() => store.getters["shopping/totalItems"]);
+  const totalItems = computed((): number => store.getters[GETTERS.TOTAL_ITEMS]);
 
   const discountsApplied = computed(
-    () => store.getters["shopping/discountsApplied"]
+    (): TotalDiscountItem[] => store.getters[GETTERS.DISCOUNTS_APPLIED]
   );
 
   const totalCostWithDiscounts = computed(
-    () => store.getters["shopping/totalCostWithDiscounts"]
+    (): number => store.getters[GETTERS.TOTAL_COST_WITH_DISCOUNTS]
   );
 
-  const hasTotalCost = computed(() => store.getters["shopping/hasTotalCost"]);
+  const hasTotalCost = computed(
+    (): boolean => store.getters[GETTERS.HAS_TOTAL_COST]
+  );
 
   const hasDiscountsApplied = computed(
-    () => store.getters["shopping/hasDiscountsApplied"]
+    (): boolean => store.getters[GETTERS.HAS_DISCOUNTS_APPLIED]
   );
+
   return {
     totalCost,
     totalItems,

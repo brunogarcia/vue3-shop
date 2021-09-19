@@ -1,4 +1,4 @@
-import { StateShopping } from "@/types";
+import { StateRoot } from "@/types";
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
 import mutations from "@/store/shopping/mutations";
@@ -8,10 +8,10 @@ const { CAP } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;
 
 describe("Shopping store - Getters", () => {
-  let stateShopping: StateShopping;
+  let stateRoot: StateRoot;
 
   beforeEach(() => {
-    stateShopping = mockState();
+    stateRoot = mockState();
   });
 
   it("Save products", () => {
@@ -26,7 +26,7 @@ describe("Shopping store - Getters", () => {
       }
     ];
 
-    mutations.SAVE_PRODUCTS(stateShopping, [
+    mutations.SAVE_PRODUCTS(stateRoot, [
       {
         id: "12345",
         code: CAP,
@@ -37,31 +37,31 @@ describe("Shopping store - Getters", () => {
       }
     ]);
 
-    expect(stateShopping.products).toEqual(expected);
+    expect(stateRoot.products).toEqual(expected);
   });
 
   it("Save total cost", () => {
-    mutations.SAVE_TOTAL_COST(stateShopping, 80);
-    expect(stateShopping.summary.totalCost).toBe(80);
+    mutations.SAVE_TOTAL_COST(stateRoot, 80);
+    expect(stateRoot.summary.totalCost).toBe(80);
   });
 
   it("Save total items", () => {
-    mutations.SAVE_TOTAL_ITEMS(stateShopping, 10);
-    expect(stateShopping.summary.totalItems).toBe(10);
+    mutations.SAVE_TOTAL_ITEMS(stateRoot, 10);
+    expect(stateRoot.summary.totalItems).toBe(10);
   });
 
   it("Save discount applied", () => {
     const expected = [{ code: "BULK", literal: "test", total: 20 }];
 
-    mutations.SAVE_DISCOUNTS_APPLIED(stateShopping, [
+    mutations.SAVE_DISCOUNTS_APPLIED(stateRoot, [
       { code: BULK, literal: "test", total: 20 }
     ]);
 
-    expect(stateShopping.summary.discountsApplied).toEqual(expected);
+    expect(stateRoot.summary.discountsApplied).toEqual(expected);
   });
 
   it("Save total cost with discounts", () => {
-    mutations.SAVE_TOTAL_COST_WITH_DISCOUNTS(stateShopping, 46);
-    expect(stateShopping.summary.totalCostWithDiscounts).toBe(46);
+    mutations.SAVE_TOTAL_COST_WITH_DISCOUNTS(stateRoot, 46);
+    expect(stateRoot.summary.totalCostWithDiscounts).toBe(46);
   });
 });

@@ -1,28 +1,21 @@
 import { ActionContext, ActionTree } from "vuex";
 import API from "@/api";
 import PRODUCT_CODE from "@/enums/product";
-import SHOPPING_MUTATION from "@/enums/shopping";
 import Checkout from "@/middleware/checkout";
-import { Product, PricingRule, StateRoot, StateShopping } from "@/types";
+import { Actions } from "@/store/shopping/types";
+import { ACTIONS, MUTATION } from "@/enums/shopping";
+import { Product, PricingRule, StateRoot } from "@/types";
 
 let checkout: Checkout;
 
-const {
-  SAVE_PRODUCTS,
-  SAVE_TOTAL_COST,
-  SAVE_TOTAL_ITEMS,
-  SAVE_DISCOUNTS_APPLIED,
-  SAVE_TOTAL_COST_WITH_DISCOUNTS
-} = SHOPPING_MUTATION;
-
-const actions: ActionTree<StateShopping, StateRoot> = {
+const actions: ActionTree<StateRoot, StateRoot> & Actions = {
   /**
    * Init shopping cart
    *
    * @param {Function} commit from Vuex
    */
-  initShoppingCart: async (
-    context: ActionContext<StateShopping, StateRoot>
+  [ACTIONS.INIT_SHOPPING_CART]: async (
+    context: ActionContext<StateRoot, StateRoot>
   ) => {
     const { commit } = context;
 
@@ -35,7 +28,7 @@ const actions: ActionTree<StateShopping, StateRoot> = {
         discounts: product.discounts
       }));
 
-      commit(SAVE_PRODUCTS, products);
+      commit(MUTATION.SAVE_PRODUCTS, products);
 
       checkout = new Checkout(pricingRules);
     } catch (error) {
@@ -50,20 +43,20 @@ const actions: ActionTree<StateShopping, StateRoot> = {
    * @param {ActionContext} context - Vuex Action Context
    * @param {PRODUCT} code - The product code
    */
-  scanProduct: (
-    { commit }: ActionContext<StateShopping, StateRoot>,
+  [ACTIONS.SCAN_PRODUCT]: (
+    { commit }: ActionContext<StateRoot, StateRoot>,
     code: PRODUCT_CODE
   ) => {
     try {
       checkout.scan(code);
 
-      commit(SAVE_TOTAL_COST, checkout.getTotalCost());
-      commit(SAVE_TOTAL_ITEMS, checkout.getTotalItems());
+      commit(MUTATION.SAVE_TOTAL_COST, checkout.getTotalCost());
+      commit(MUTATION.SAVE_TOTAL_ITEMS, checkout.getTotalItems());
       commit(
-        SAVE_TOTAL_COST_WITH_DISCOUNTS,
+        MUTATION.SAVE_TOTAL_COST_WITH_DISCOUNTS,
         checkout.getTotalCostWithDiscounts()
       );
-      commit(SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
+      commit(MUTATION.SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
     } catch (error) {
       // TODO: send to error monitoring service (eg: Sentry)
       console.log(error);
@@ -77,20 +70,20 @@ const actions: ActionTree<StateShopping, StateRoot> = {
    * @param {ActionContext} context - Vuex Action Context
    * @param {PRODUCT} code - The product code
    */
-  removeProduct: (
-    { commit }: ActionContext<StateShopping, StateRoot>,
+  [ACTIONS.REMOVE_PRODUCT]: (
+    { commit }: ActionContext<StateRoot, StateRoot>,
     code: PRODUCT_CODE
   ) => {
     try {
       checkout.remove(code);
 
-      commit(SAVE_TOTAL_COST, checkout.getTotalCost());
-      commit(SAVE_TOTAL_ITEMS, checkout.getTotalItems());
+      commit(MUTATION.SAVE_TOTAL_COST, checkout.getTotalCost());
+      commit(MUTATION.SAVE_TOTAL_ITEMS, checkout.getTotalItems());
       commit(
-        SAVE_TOTAL_COST_WITH_DISCOUNTS,
+        MUTATION.SAVE_TOTAL_COST_WITH_DISCOUNTS,
         checkout.getTotalCostWithDiscounts()
       );
-      commit(SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
+      commit(MUTATION.SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
     } catch (error) {
       // TODO: send to error monitoring service (eg: Sentry)
       throw new Error(
