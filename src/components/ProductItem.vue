@@ -2,16 +2,7 @@
   <li class="product row">
     <!--Image and description-->
     <div class="col-product">
-      <figure class="product-image">
-        <img :src="getProductImage(product.code)" :alt="product.name" />
-        <div class="product-description">
-          <h1>{{ product.name }}</h1>
-          <p class="product-code">
-            Product code
-            <span>{{ product.id }}</span>
-          </p>
-        </div>
-      </figure>
+      <shop-figure :product="product" />
     </div>
 
     <!--Quantity-->
@@ -72,6 +63,7 @@ import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
 import ShopButton from "@/components/core/Button.vue";
 import ShopInputText from "@/components/core/InputText.vue";
+import ShopFigure from "@/components/core/Figure.vue";
 
 const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
@@ -80,7 +72,8 @@ export default defineComponent({
 
   components: {
     ShopButton,
-    ShopInputText
+    ShopInputText,
+    ShopFigure
   },
 
   props: {
@@ -126,45 +119,19 @@ export default defineComponent({
       }
     };
 
-    const getProductImage = (code: string): string => {
-      return `/img/${code.toLowerCase()}.png`;
-    };
-
     return {
       quantity,
       priceTotal,
       addProduct,
-      removeProduct,
-      getProductImage
+      removeProduct
     };
   }
 });
 </script>
 
 <style scoped>
-.product-image {
-  display: flex;
-  align-items: center;
-  flex-flow: row nowrap;
-}
-
-.product-image img {
-  margin-right: 16px;
-  width: 72px;
-  height: 72px;
-  border: 1px solid #cacad1;
-  border-radius: 4px;
-}
-
 .product h1 {
   color: #00a0df;
-}
-
-.product-code {
-  border-radius: 4px;
-  color: #a6a7b3;
-  letter-spacing: 0.13px;
-  font-weight: 400;
 }
 
 .product-price {
