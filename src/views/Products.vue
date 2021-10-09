@@ -27,16 +27,6 @@ export default defineComponent({
   padding: 40px 32px 40px 56px;
 }
 
-.products button.count {
-  padding: 0 8px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  color: #00a0df;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .products {
   flex: 1;
 }

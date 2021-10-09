@@ -39,18 +39,6 @@ export default defineComponent({
   width: 100%;
 }
 
-.summary input {
-  margin: 8px auto;
-  color: #a6a7b3;
-  text-indent: 16px;
-  text-transform: uppercase;
-}
-
-.summary input::placeholder {
-  color: #a6a7b3;
-  text-transform: lowercase;
-}
-
 .summary ul li {
   display: flex;
   justify-content: space-between;

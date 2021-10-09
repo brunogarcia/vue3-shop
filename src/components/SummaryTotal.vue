@@ -8,13 +8,9 @@
         </span>
       </li>
     </ul>
-    <button
-      :disabled="!hasTotalCost"
-      type="button"
-      @click="handleDisplayModal()"
-    >
+    <shop-button :disabled="!hasTotalCost" @click="handleDisplayModal()">
       Checkout
-    </button>
+    </shop-button>
 
     <teleport to="body">
       <Modal v-if="displayModal" @hide-modal="handleHideModal">
@@ -29,6 +25,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Modal from "@/components/Modal.vue";
+import ShopButton from "@/components/core/Button.vue";
 import Checkout from "@/components/Checkout.vue";
 import useModal from "@/composable-functions/useModal";
 import useShoppingSummary from "@/composable-functions/useShoppingSummary";
@@ -38,7 +35,8 @@ export default defineComponent({
 
   components: {
     Modal,
-    Checkout
+    Checkout,
+    ShopButton
   },
 
   setup() {

@@ -2,37 +2,32 @@
   <li class="product row">
     <!--Image and description-->
     <div class="col-product">
-      <figure class="product-image">
-        <img :src="getProductImage(product.code)" :alt="product.name" />
-        <div class="product-description">
-          <h1>{{ product.name }}</h1>
-          <p class="product-code">
-            Product code
-            <span>{{ product.id }}</span>
-          </p>
-        </div>
-      </figure>
+      <shop-figure :product="product" />
     </div>
 
     <!--Quantity-->
     <div class="col-quantity">
-      <button
-        class="count"
+      <shop-button
+        classes="icon"
         data-testid="remove-product"
         @click="removeProduct()"
       >
         -
-      </button>
-      <input
+      </shop-button>
+
+      <shop-input-text
         v-model.number="quantity"
-        type="text"
-        class="product-quantity"
         data-testid="product-quantity"
         disabled
       />
-      <button class="count" data-testid="add-product" @click="addProduct()">
+
+      <shop-button
+        classes="icon"
+        data-testid="add-product"
+        @click="addProduct()"
+      >
         +
-      </button>
+      </shop-button>
     </div>
 
     <!--Price-->
@@ -62,20 +57,29 @@
 
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
-import { PricingRule } from "@/types";
+import { Product } from "@/types";
 import isValidProductCode from "@/utils/isValidProductCode";
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
+import ShopButton from "@/components/core/Button.vue";
+import ShopInputText from "@/components/core/InputText.vue";
+import ShopFigure from "@/components/core/Figure.vue";
 
 const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
 export default defineComponent({
   name: "ProductItem",
 
+  components: {
+    ShopButton,
+    ShopInputText,
+    ShopFigure
+  },
+
   props: {
     product: {
       required: true,
-      type: Object as () => PricingRule
+      type: Object as () => Product
     }
   },
 
@@ -115,53 +119,19 @@ export default defineComponent({
       }
     };
 
-    const getProductImage = (code: string): string => {
-      return `/img/${code.toLowerCase()}.png`;
-    };
-
     return {
       quantity,
       priceTotal,
       addProduct,
-      removeProduct,
-      getProductImage
+      removeProduct
     };
   }
 });
 </script>
 
 <style scoped>
-.product-image {
-  display: flex;
-  align-items: center;
-  flex-flow: row nowrap;
-}
-
-.product-image img {
-  margin-right: 16px;
-  width: 72px;
-  height: 72px;
-  border: 1px solid #cacad1;
-  border-radius: 4px;
-}
-
 .product h1 {
   color: #00a0df;
-}
-
-.product-code {
-  border-radius: 4px;
-  color: #a6a7b3;
-  letter-spacing: 0.13px;
-  font-weight: 400;
-}
-
-.product-quantity {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #dbdbe0;
-  border-radius: 4px;
-  text-align: center;
 }
 
 .product-price {

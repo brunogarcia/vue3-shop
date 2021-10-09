@@ -99,7 +99,8 @@ describe("ProductItem.vue", () => {
   });
 
   it("Add a product must emit an event", async () => {
-    const expected = ["add-product", [["CAP"], ["CAP"]]];
+    const expectedClick = ["click", [[], []]];
+    const expectedAddProduct = ["add-product", [["CAP"], ["CAP"]]];
 
     const { getByTestId, emitted } = render(ProductItem, {
       props: {
@@ -122,9 +123,12 @@ describe("ProductItem.vue", () => {
     await fireEvent.click(button);
 
     // Get events emitted
-    const [firstEventEmitted] = Object.entries(emitted());
+    const [inputEventEmitted, addProductEventEmitted] = Object.entries(
+      emitted()
+    );
 
-    expect(firstEventEmitted).toEqual(expected);
+    expect(inputEventEmitted).toEqual(expectedClick);
+    expect(addProductEventEmitted).toEqual(expectedAddProduct);
   });
 
   it("Remove a product must update the local state ", async () => {
@@ -158,6 +162,7 @@ describe("ProductItem.vue", () => {
   });
 
   it("Remove a product must emit an event", async () => {
+    const expectedClick = ["click", [[], [], []]];
     const expectedEventAdd = ["add-product", [["CAP"], ["CAP"]]];
     const expectedEventRemove = ["remove-product", [["CAP"]]];
 
@@ -186,10 +191,15 @@ describe("ProductItem.vue", () => {
     await fireEvent.click(buttonRemove);
 
     // Get the events emitted
-    const [firstEventEmitted, secondEventEmitted] = Object.entries(emitted());
+    const [
+      inputEventEmitted,
+      addProductEventEmitted,
+      removeEventEmitted
+    ] = Object.entries(emitted());
 
     // Asserts
-    expect(firstEventEmitted).toEqual(expectedEventAdd);
-    expect(secondEventEmitted).toEqual(expectedEventRemove);
+    expect(inputEventEmitted).toEqual(expectedClick);
+    expect(addProductEventEmitted).toEqual(expectedEventAdd);
+    expect(removeEventEmitted).toEqual(expectedEventRemove);
   });
 });

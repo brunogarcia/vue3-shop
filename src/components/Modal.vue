@@ -10,9 +10,9 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" @click="handleHideModal()">
+            <shop-button @click="handleHideModal()">
               Confirm
-            </button>
+            </shop-button>
           </div>
         </div>
       </div>
@@ -23,11 +23,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import EVENT from "@/enums/event";
+import ShopButton from "@/components/core/Button.vue";
 
 const { HIDE_MODAL } = EVENT;
 
 export default defineComponent({
   name: "Modal",
+
+  components: {
+    ShopButton
+  },
 
   setup(props, { emit }) {
     const handleHideModal = () => {
