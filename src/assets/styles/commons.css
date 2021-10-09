@@ -18,8 +18,6 @@ h2,
   line-height: 16px;
 }
 
-.product-quantity,
-.summary input,
 .summary ul li,
 .summary-total-cost {
   font-size: 14px;
@@ -107,12 +105,6 @@ h1 {
 
 .col-total {
   width: 15%;
-}
-
-input {
-  width: 100%;
-  height: 48px;
-  border-radius: 4px;
 }
 
 .currency {

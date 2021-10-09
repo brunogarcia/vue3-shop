@@ -23,13 +23,13 @@
       >
         -
       </shop-button>
-      <input
+
+      <shop-input-text
         v-model.number="quantity"
-        type="text"
-        class="product-quantity"
         data-testid="product-quantity"
         disabled
       />
+
       <shop-button
         classes="icon"
         data-testid="add-product"
@@ -71,6 +71,7 @@ import isValidProductCode from "@/utils/isValidProductCode";
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
 import ShopButton from "@/components/core/Button.vue";
+import ShopInputText from "@/components/core/InputText.vue";
 
 const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
@@ -78,7 +79,8 @@ export default defineComponent({
   name: "ProductItem",
 
   components: {
-    ShopButton
+    ShopButton,
+    ShopInputText
   },
 
   props: {
@@ -163,14 +165,6 @@ export default defineComponent({
   color: #a6a7b3;
   letter-spacing: 0.13px;
   font-weight: 400;
-}
-
-.product-quantity {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #dbdbe0;
-  border-radius: 4px;
-  text-align: center;
 }
 
 .product-price {
