@@ -16,13 +16,13 @@
 
     <!--Quantity-->
     <div class="col-quantity">
-      <button
-        class="count"
+      <shop-button
+        classes="icon"
         data-testid="remove-product"
         @click="removeProduct()"
       >
         -
-      </button>
+      </shop-button>
       <input
         v-model.number="quantity"
         type="text"
@@ -30,9 +30,13 @@
         data-testid="product-quantity"
         disabled
       />
-      <button class="count" data-testid="add-product" @click="addProduct()">
+      <shop-button
+        classes="icon"
+        data-testid="add-product"
+        @click="addProduct()"
+      >
         +
-      </button>
+      </shop-button>
     </div>
 
     <!--Price-->
@@ -62,20 +66,25 @@
 
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
-import { PricingRule } from "@/types";
+import { Product } from "@/types";
 import isValidProductCode from "@/utils/isValidProductCode";
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
+import ShopButton from "@/components/core/Button.vue";
 
 const { ADD_PRODUCT, REMOVE_PRODUCT } = EVENT;
 
 export default defineComponent({
   name: "ProductItem",
 
+  components: {
+    ShopButton
+  },
+
   props: {
     product: {
       required: true,
-      type: Object as () => PricingRule
+      type: Object as () => Product
     }
   },
 

@@ -31,7 +31,6 @@ h2,
   line-height: 24px;
 }
 
-.products button.count,
 .summary-total-price {
   font-size: 20px;
   line-height: 25px;
@@ -120,24 +119,3 @@ input {
   margin-left: 4px;
 }
 
-button[type="button"] {
-  margin-top: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  width: 100%;
-  border-radius: 4px;
-  background: #00a0df;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 14px;
-  cursor: pointer;
-}
-
-button:disabled {
-  background: #eee;
-  color: #333;
-  border: solid 1px #999;
-  opacity: .5;
-  cursor: auto;
-}
