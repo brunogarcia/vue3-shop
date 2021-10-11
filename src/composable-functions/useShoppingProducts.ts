@@ -10,15 +10,15 @@ export default function useShopping() {
 
   const products = computed((): Product[] => store.getters[GETTERS.PRODUCTS]);
 
-  const handleAddProduct = (code: PRODUCT_CODE): Promise<void> =>
+  const addProduct = (code: PRODUCT_CODE): Promise<void> =>
     store.dispatch(ACTIONS.SCAN_PRODUCT, code);
 
-  const handleRemoveProduct = (code: PRODUCT_CODE): Promise<void> =>
+  const removeProduct = (code: PRODUCT_CODE): Promise<void> =>
     store.dispatch(ACTIONS.REMOVE_PRODUCT, code);
 
   return {
     products,
-    handleAddProduct,
-    handleRemoveProduct
+    addProduct,
+    removeProduct
   };
 }

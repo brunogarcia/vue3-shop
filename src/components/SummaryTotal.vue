@@ -8,12 +8,12 @@
         </span>
       </li>
     </ul>
-    <shop-button :disabled="!hasTotalCost" @click="handleDisplayModal()">
+    <shop-button :disabled="!hasTotalCost" @click="displayModal()">
       Checkout
     </shop-button>
 
     <teleport to="body">
-      <Modal v-if="displayModal" @hide-modal="handleHideModal">
+      <Modal v-if="isModalDisplayed" @hide-modal="hideModal">
         <template v-slot:body>
           <Checkout />
         </template>
@@ -40,13 +40,13 @@ export default defineComponent({
   },
 
   setup() {
-    const { displayModal, handleDisplayModal, handleHideModal } = useModal();
+    const { isModalDisplayed, displayModal, hideModal } = useModal();
     const { hasTotalCost, totalCostWithDiscounts } = useShoppingSummary();
 
     return {
+      isModalDisplayed,
       displayModal,
-      handleDisplayModal,
-      handleHideModal,
+      hideModal,
       hasTotalCost,
       totalCostWithDiscounts
     };

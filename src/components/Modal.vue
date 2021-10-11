@@ -10,7 +10,7 @@
           </div>
 
           <div class="modal-footer">
-            <shop-button @click="handleHideModal()">
+            <shop-button @click="hideModal()">
               Confirm
             </shop-button>
           </div>
@@ -35,12 +35,12 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const handleHideModal = () => {
+    const hideModal = () => {
       emit(HIDE_MODAL);
     };
 
     return {
-      handleHideModal
+      hideModal
     };
   }
 });

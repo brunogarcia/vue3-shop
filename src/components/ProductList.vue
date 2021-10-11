@@ -4,8 +4,8 @@
       v-for="product in products"
       :key="product.id"
       :product="product"
-      @add-product="handleAddProduct"
-      @remove-product="handleRemoveProduct"
+      @add-product="addProduct"
+      @remove-product="removeProduct"
     />
   </ul>
 </template>
@@ -23,16 +23,12 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      products,
-      handleAddProduct,
-      handleRemoveProduct
-    } = useShoppingProducts();
+    const { products, addProduct, removeProduct } = useShoppingProducts();
 
     return {
       products,
-      handleAddProduct,
-      handleRemoveProduct
+      addProduct,
+      removeProduct
     };
   }
 });

@@ -1,15 +1,15 @@
 import { ref } from "vue";
 
 export default function useModal() {
-  const displayModal = ref(false);
+  const isModalDisplayed = ref(false);
 
-  const handleHideModal = () => (displayModal.value = false);
+  const hideModal = () => (isModalDisplayed.value = false);
 
-  const handleDisplayModal = () => (displayModal.value = true);
+  const displayModal = () => (isModalDisplayed.value = true);
 
   return {
-    displayModal,
-    handleHideModal,
-    handleDisplayModal
+    isModalDisplayed,
+    hideModal,
+    displayModal
   };
 }
