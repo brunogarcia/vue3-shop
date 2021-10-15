@@ -1,5 +1,5 @@
 import PRODUCT_CODE from "@/enums/product";
-import { DiscountRule } from "@/domain/checkout/checkout.types";
+import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 
 import CheckoutService from "@/domain/checkout/checkout.service";
 import mockPrincingRules from "../mocks/mockPrincingRules";
