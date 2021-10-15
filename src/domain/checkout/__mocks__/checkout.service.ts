@@ -1,7 +1,7 @@
 /**
  * Mock checkout middleware in order to test Vuex actions
  */
-export default class Checkout {
+export default class CheckoutService {
   getTotalItems() {
     return 10;
   }

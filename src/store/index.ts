@@ -5,7 +5,7 @@ import {
   useStore as baseUseStore
 } from "vuex";
 
-import { StateRoot } from "@/types";
+import { StateRoot } from "@/store/types";
 import Shopping from "@/store/shopping";
 
 export const key: InjectionKey<VuexStore<StateRoot>> = Symbol();

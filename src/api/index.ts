@@ -1,4 +1,4 @@
-import { Product } from "@/types";
+import { Product } from "@/domain/checkout/checkout.types";
 
 /**
  * Mock API response

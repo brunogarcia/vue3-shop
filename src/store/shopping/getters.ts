@@ -1,10 +1,12 @@
 import { GetterTree } from "vuex";
 
 import { GETTERS } from "@/enums/shopping";
-import { Getters } from "@/store/shopping/types";
-import { StateRoot, Product, TotalDiscountItem } from "@/types";
 
-const getters: GetterTree<StateRoot, StateRoot> & Getters = {
+import { StateRoot } from "@/store/types";
+import { ShoppingGetters } from "@/store/shopping/types";
+import { Product, TotalDiscountItem } from "@/domain/checkout/checkout.types";
+
+const getters: GetterTree<StateRoot, StateRoot> & ShoppingGetters = {
   /**
    * Products
    *

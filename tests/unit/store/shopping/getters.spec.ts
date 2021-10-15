@@ -1,4 +1,4 @@
-import { StateRoot } from "@/types";
+import { StateRoot } from "@/store/types";
 import getters from "@/store/shopping/getters";
 import mockState from "../../mocks/mockShoppingState";
 

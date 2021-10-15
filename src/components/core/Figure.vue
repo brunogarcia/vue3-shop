@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Product } from "@/types";
+import { Product } from "@/domain/checkout/checkout.types";
 
 export default defineComponent({
   name: "ShopFigure",

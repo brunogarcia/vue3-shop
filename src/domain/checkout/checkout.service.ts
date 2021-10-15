@@ -1,16 +1,19 @@
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
+
 import {
   PricingRule,
-  DiscountRule,
   ScannerItem,
   TotalDiscountItem
-} from "@/types";
-import discountRules from "@/middleware/discountRules";
+} from "@/domain/checkout/checkout.types";
+import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 
 const { EMPTY } = PRODUCT_CODE;
 
-export default class Checkout {
+/**
+ * Checkout service
+ */
+export default class CheckoutService {
   private totalCost = 0;
   private scanner: ScannerItem[] = [];
   private pricingRules: PricingRule[];
@@ -22,9 +25,9 @@ export default class Checkout {
     discounts: []
   };
 
-  constructor(pricingRules: PricingRule[]) {
+  constructor(pricingRules: PricingRule[], discountRules: DiscountRule[]) {
     this.pricingRules = pricingRules;
-    this.discountRules = discountRules();
+    this.discountRules = discountRules;
   }
 
   /**

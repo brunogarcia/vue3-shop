@@ -1,4 +1,4 @@
-import { StateRoot } from "@/types";
+import { StateRoot } from "@/store/types";
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
 import mutations from "@/store/shopping/mutations";

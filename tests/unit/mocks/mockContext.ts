@@ -1,4 +1,4 @@
-import { StateRoot } from "@/types";
+import { StateRoot } from "@/store/types";
 import { ActionContext } from "vuex";
 import mockShoppingState from "./mockShoppingState";
 

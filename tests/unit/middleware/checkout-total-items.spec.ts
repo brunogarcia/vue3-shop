@@ -1,15 +1,20 @@
 import PRODUCT_CODE from "@/enums/product";
-import Checkout from "@/middleware/checkout";
+import { DiscountRule } from "@/domain/checkout/checkout.types";
+
+import CheckoutService from "@/domain/checkout/checkout.service";
 import mockPrincingRules from "../mocks/mockPrincingRules";
+import DiscountRulesService from "@/domain/discount-rules/discount.rules.service";
 
 const { CAP, TSHIRT, MUG } = PRODUCT_CODE;
+const discountRulesService = new DiscountRulesService();
 
-describe("Checkout - Total items", () => {
-  let checkout: Checkout;
+describe("Checkout Service - Total items", () => {
+  let checkout: CheckoutService;
   const princingRules = mockPrincingRules();
+  const discountRules: DiscountRule[] = discountRulesService.getRules();
 
   beforeEach(() => {
-    checkout = new Checkout(princingRules);
+    checkout = new CheckoutService(princingRules, discountRules);
   });
 
   it("After scan a list of products, the total items must be updated", () => {

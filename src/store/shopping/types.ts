@@ -1,20 +1,23 @@
 import { ActionContext } from "vuex";
+
+import { StateRoot } from "@/store/types";
+import { Product, TotalDiscountItem } from "@/domain/checkout/checkout.types";
+
 import PRODUCT_CODE from "@/enums/product";
 import { ACTIONS, MUTATION, GETTERS } from "@/enums/shopping";
-import { Product, StateRoot, TotalDiscountItem } from "@/types";
 
 type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
+  commit<K extends keyof ShoppingMutations>(
     key: K,
-    payload?: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
-  getters<K extends keyof Getters>(
+    payload?: Parameters<ShoppingMutations[K]>[1]
+  ): ReturnType<ShoppingMutations[K]>;
+  getters<K extends keyof ShoppingGetters>(
     key: K,
-    payload: Parameters<Getters[K]>[1]
-  ): ReturnType<Getters[K]>;
+    payload: Parameters<ShoppingGetters[K]>[1]
+  ): ReturnType<ShoppingGetters[K]>;
 } & Omit<ActionContext<StateRoot, StateRoot>, "commit">;
 
-export interface Actions {
+export interface ShoppingActions {
   [ACTIONS.INIT_SHOPPING_CART]({
     commit
   }: AugmentedActionContext): Promise<void>;
@@ -28,7 +31,7 @@ export interface Actions {
   ): void;
 }
 
-export type Mutations<S = StateRoot> = {
+export type ShoppingMutations<S = StateRoot> = {
   [MUTATION.SAVE_PRODUCTS](state: S, payload: Product[]): void;
   [MUTATION.SAVE_TOTAL_COST](state: S, payload: number): void;
   [MUTATION.SAVE_TOTAL_ITEMS](state: S, payload: number): void;
@@ -39,7 +42,7 @@ export type Mutations<S = StateRoot> = {
   [MUTATION.SAVE_TOTAL_COST_WITH_DISCOUNTS](state: S, payload: number): void;
 };
 
-export type Getters = {
+export type ShoppingGetters = {
   [GETTERS.PRODUCTS](state: StateRoot): Product[];
   [GETTERS.TOTAL_COST](state: StateRoot): number;
   [GETTERS.TOTAL_ITEMS](state: StateRoot): number;
