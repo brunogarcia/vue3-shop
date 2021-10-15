@@ -1,5 +1,7 @@
 import { StoreOptions } from "vuex";
-import { StateRoot } from "@/types";
+
+import { StateRoot } from "@/store/types";
+
 import initialState from "@/store/shopping/initialState";
 import actions from "@/store/shopping/actions";
 import getters from "@/store/shopping/getters";

@@ -57,10 +57,13 @@
 
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
-import { Product } from "@/types";
-import isValidProductCode from "@/utils/isValidProductCode";
+
 import EVENT from "@/enums/event";
 import PRODUCT_CODE from "@/enums/product";
+
+import { Product } from "@/domain/checkout/checkout.types";
+import isValidProductCode from "@/utils/isValidProductCode";
+
 import ShopButton from "@/components/core/Button.vue";
 import ShopInputText from "@/components/core/InputText.vue";
 import ShopFigure from "@/components/core/Figure.vue";

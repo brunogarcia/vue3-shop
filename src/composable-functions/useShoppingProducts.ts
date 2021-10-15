@@ -1,9 +1,10 @@
 import { computed } from "vue";
 import { useStore } from "@/store";
 
+import { Product } from "@/domain/checkout/checkout.types";
+
 import PRODUCT_CODE from "@/enums/product";
 import { ACTIONS, GETTERS } from "@/enums/shopping";
-import { Product } from "@/types";
 
 export default function useShopping() {
   const store = useStore();

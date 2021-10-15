@@ -1,6 +1,6 @@
 import PRODUCT_CODE from "@/enums/product";
 import DISCOUNT_CODE from "@/enums/discount";
-import { StateRoot } from "@/types";
+import { StateRoot } from "@/store/types";
 
 const { CAP, TSHIRT, MUG } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK } = DISCOUNT_CODE;

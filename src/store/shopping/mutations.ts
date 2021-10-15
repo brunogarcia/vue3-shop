@@ -1,9 +1,12 @@
-import { MUTATION } from "@/enums/shopping";
-import { Mutations } from "@/store/shopping/types";
-import { StateRoot, Product, TotalDiscountItem } from "@/types";
 import { MutationTree } from "vuex";
 
-const mutations: MutationTree<StateRoot> & Mutations = {
+import { MUTATION } from "@/enums/shopping";
+
+import { StateRoot } from "@/store/types";
+import { ShoppingMutations } from "@/store/shopping/types";
+import { Product, TotalDiscountItem } from "@/domain/checkout/checkout.types";
+
+const mutations: MutationTree<StateRoot> & ShoppingMutations = {
   [MUTATION.SAVE_PRODUCTS](state: StateRoot, payload: Product[]) {
     state.products = payload;
   },

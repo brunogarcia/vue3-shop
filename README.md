@@ -49,6 +49,23 @@ npm run test:unit
 npm run lint
 ```
 
+## Architecture
+
+* Presentation
+  * This layer is basically made of Vue views and components.
+* Application
+  * This layer contains application logic.
+  * This layer is implemented via Vue Composable Functions
+  * Organized via Services with use cases
+* Infrastructure
+  * This layer is responsible for communications with the outside world and storing local data.
+    * Store: State Management implemented with Vuex
+    * Repositories
+    * HTTP Requests/Responses
+* Domain
+  * This layer is for business logic.
+  * There is just pure TypeScript code with no frameworks/libraries
+
 ## Directories
 
 ```

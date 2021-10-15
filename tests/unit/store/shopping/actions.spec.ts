@@ -11,7 +11,7 @@ const {
   SAVE_TOTAL_COST_WITH_DISCOUNTS
 } = MUTATION;
 
-jest.mock("@/middleware/checkout");
+jest.mock("@/domain/checkout/checkout.service");
 
 describe("Shopping store - Actions", () => {
   it("Scan product", async () => {

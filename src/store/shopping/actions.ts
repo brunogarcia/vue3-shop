@@ -1,14 +1,21 @@
 import { ActionContext, ActionTree } from "vuex";
+
 import API from "@/api";
+import CheckoutService from "@/domain/checkout/checkout.service";
+import DiscountRulesService from "@/domain/discount-rules/discount.rules.service";
+
+import { StateRoot } from "@/store/types";
+import { ShoppingActions } from "@/store/shopping/types";
+import { Product, PricingRule } from "@/domain/checkout/checkout.types";
+import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
+
 import PRODUCT_CODE from "@/enums/product";
-import Checkout from "@/middleware/checkout";
-import { Actions } from "@/store/shopping/types";
 import { ACTIONS, MUTATION } from "@/enums/shopping";
-import { Product, PricingRule, StateRoot } from "@/types";
 
-let checkout: Checkout;
+let checkoutService: CheckoutService;
+const discountRulesService = new DiscountRulesService();
 
-const actions: ActionTree<StateRoot, StateRoot> & Actions = {
+const actions: ActionTree<StateRoot, StateRoot> & ShoppingActions = {
   /**
    * Init shopping cart
    *
@@ -28,9 +35,11 @@ const actions: ActionTree<StateRoot, StateRoot> & Actions = {
         discounts: product.discounts
       }));
 
+      const discountRules: DiscountRule[] = discountRulesService.getRules();
+
       commit(MUTATION.SAVE_PRODUCTS, products);
 
-      checkout = new Checkout(pricingRules);
+      checkoutService = new CheckoutService(pricingRules, discountRules);
     } catch (error) {
       // TODO: send to error monitoring service (eg: Sentry)
       throw new Error("Sorry, there was an issue when trying to init the shop");
@@ -48,15 +57,18 @@ const actions: ActionTree<StateRoot, StateRoot> & Actions = {
     code: PRODUCT_CODE
   ) => {
     try {
-      checkout.scan(code);
+      checkoutService.scan(code);
 
-      commit(MUTATION.SAVE_TOTAL_COST, checkout.getTotalCost());
-      commit(MUTATION.SAVE_TOTAL_ITEMS, checkout.getTotalItems());
+      commit(MUTATION.SAVE_TOTAL_COST, checkoutService.getTotalCost());
+      commit(MUTATION.SAVE_TOTAL_ITEMS, checkoutService.getTotalItems());
       commit(
         MUTATION.SAVE_TOTAL_COST_WITH_DISCOUNTS,
-        checkout.getTotalCostWithDiscounts()
+        checkoutService.getTotalCostWithDiscounts()
       );
-      commit(MUTATION.SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
+      commit(
+        MUTATION.SAVE_DISCOUNTS_APPLIED,
+        checkoutService.getDiscountsApplied()
+      );
     } catch (error) {
       // TODO: send to error monitoring service (eg: Sentry)
       console.log(error);
@@ -75,15 +87,18 @@ const actions: ActionTree<StateRoot, StateRoot> & Actions = {
     code: PRODUCT_CODE
   ) => {
     try {
-      checkout.remove(code);
+      checkoutService.remove(code);
 
-      commit(MUTATION.SAVE_TOTAL_COST, checkout.getTotalCost());
-      commit(MUTATION.SAVE_TOTAL_ITEMS, checkout.getTotalItems());
+      commit(MUTATION.SAVE_TOTAL_COST, checkoutService.getTotalCost());
+      commit(MUTATION.SAVE_TOTAL_ITEMS, checkoutService.getTotalItems());
       commit(
         MUTATION.SAVE_TOTAL_COST_WITH_DISCOUNTS,
-        checkout.getTotalCostWithDiscounts()
+        checkoutService.getTotalCostWithDiscounts()
       );
-      commit(MUTATION.SAVE_DISCOUNTS_APPLIED, checkout.getDiscountsApplied());
+      commit(
+        MUTATION.SAVE_DISCOUNTS_APPLIED,
+        checkoutService.getDiscountsApplied()
+      );
     } catch (error) {
       // TODO: send to error monitoring service (eg: Sentry)
       throw new Error(

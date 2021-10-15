@@ -1,4 +1,5 @@
-import { StateRoot, Product, Summary } from "@/types";
+import { StateRoot } from "@/store/types";
+import { Product, Summary } from "@/domain/checkout/checkout.types";
 
 const products: Product[] = [];
 

@@ -1,15 +1,20 @@
 import PRODUCT_CODE from "@/enums/product";
-import Checkout from "@/middleware/checkout";
+import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
+
+import CheckoutService from "@/domain/checkout/checkout.service";
 import mockPrincingRules from "../mocks/mockPrincingRules";
+import DiscountRulesService from "@/domain/discount-rules/discount.rules.service";
 
 const { CAP, TSHIRT } = PRODUCT_CODE;
+const discountRulesService = new DiscountRulesService();
 
-describe("Checkout - Promotions", () => {
-  let checkout: Checkout;
+describe("Checkout Service - Promotions", () => {
+  let checkout: CheckoutService;
   const princingRules = mockPrincingRules();
+  const discountRules: DiscountRule[] = discountRulesService.getRules();
 
   beforeEach(() => {
-    checkout = new Checkout(princingRules);
+    checkout = new CheckoutService(princingRules, discountRules);
   });
 
   it("The checkout is able to process the 2x1 promotion", () => {

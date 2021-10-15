@@ -2,7 +2,7 @@ import { computed } from "vue";
 import { useStore } from "@/store";
 
 import { GETTERS } from "@/enums/shopping";
-import { TotalDiscountItem } from "@/types";
+import { TotalDiscountItem } from "@/domain/checkout/checkout.types";
 
 export default function useShopping() {
   const store = useStore();
