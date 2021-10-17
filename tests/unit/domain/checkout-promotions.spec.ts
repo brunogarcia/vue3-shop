@@ -1,8 +1,8 @@
-import PRODUCT_CODE from "@/enums/product";
+import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
 import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 
 import CheckoutService from "@/domain/checkout/checkout.service";
-import mockPrincingRules from "../mocks/mockPrincingRules";
+import mockPrincingRules from "../_mocks/mockPrincingRules";
 import DiscountRulesService from "@/domain/discount-rules/discount.rules.service";
 
 const { CAP, TSHIRT } = PRODUCT_CODE;
