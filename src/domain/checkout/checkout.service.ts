@@ -1,5 +1,5 @@
-import PRODUCT_CODE from "@/enums/product";
-import DISCOUNT_CODE from "@/enums/discount";
+import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
 
 import {
   PricingRule,

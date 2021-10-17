@@ -1,4 +1,4 @@
-import DISCOUNT_CODE from "@/enums/discount";
+import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
 
 import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 import { discountFactory } from "@/domain/discount-rules/discount.rules.factory";

@@ -1,5 +1,11 @@
-import PRODUCT_CODE from "@/enums/product";
-import DISCOUNT_CODE from "@/enums/discount";
+import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
+
+export enum PRODUCT_CODE {
+  CAP = "CAP",
+  TSHIRT = "TSHIRT",
+  MUG = "MUG",
+  EMPTY = "EMPTY"
+}
 
 export interface PricingRule {
   code: PRODUCT_CODE;

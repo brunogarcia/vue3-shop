@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 
-import App from "@/App.vue";
-import { store, key } from "@/store";
+import App from "@/ui/App.vue";
+import { store, key } from "@/infrastructure/store";
 
 createApp(App)
   .use(store, key)
