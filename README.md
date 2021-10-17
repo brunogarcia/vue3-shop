@@ -19,49 +19,19 @@ And we are offering users these discounts:
 - 2-for-1 promotions: buy two of the same product, get one free, applied to `CAP` items.
 - bulk discounts: buying 3 or more of `TSHIRT` product, the price of that product is reduced 5%. E.g., if you buy 3 or more `TSHIRT` items, the price per unit should be 19.00€.
 
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Run your unit tests
-
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
 ## Architecture
 
 * Presentation
   * This layer is basically made of Vue views and components.
-* Application
-  * This layer contains application logic.
-  * This layer is implemented via Vue Composable Functions
-  * Organized via Services with use cases
 * Infrastructure
   * This layer is responsible for communications with the outside world and storing local data.
     * Store: State Management implemented with Vuex
     * Repositories
     * HTTP Requests/Responses
+* Application
+  * This layer contains application logic.
+  * This layer is implemented via Vue Composable Functions
+  * Organized via services with use cases
 * Domain
   * This layer is for business logic.
   * There is just pure TypeScript code with no frameworks/libraries
@@ -75,14 +45,14 @@ npm run lint
     ├── components (Contains the Vue components)
     ├── enums (Contains the constants of the app)
     ├── composable-functions (Contains the composable functions)
-    ├── middleware (Contains the Checkout middleware)
+    ├── domain (Contains the business logic)
     ├── store (Contains the Vuex modules)
     ├── utils (Contains the utils of the app)
     └── views (Contains the Vue views)
 └── tests
     └── unit (Contains the unit tests of the app)
         ├── components (Unit tests for Vue components)
-        ├── middleware (Unit tests for the Checkout middleware)
+        ├── domain (Unit tests for the business logic)
         ├── store (Unit tests for the Vuex modules)
         ├── mocks (Mocks: Vuex State, Vuex Store, Vuex Context and Princing Rules)
         └── views (Unit tests for Vue views)
@@ -94,11 +64,11 @@ npm run lint
 
 - [chore] Create a Vue app with these plugins: Typescript, ESlint, Prettier, Vuex, Jest and PostCSS
 
-### Service
+### API
 
-- [feat] Create the products service
+- [feat] Create the products resource
 
-### Checkout middleware
+### Checkout service
 
 - [feat] The checkout manages the discount rules
 - [feat] The checkout manages the pricing rules
@@ -153,3 +123,33 @@ npm run lint
 - [feat] Create component: summary total cost
 - [feat] Create component: summary checkout
 - [feat] Connect summary with the data manager
+
+## Project setup
+
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+
+```
+npm run build
+```
+
+### Run your unit tests
+
+```
+npm run test:unit
+```
+
+### Lints and fixes files
+
+```
+npm run lint
+```
