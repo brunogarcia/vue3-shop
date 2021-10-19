@@ -1,7 +1,8 @@
-import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
-
-import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 import { discountFactory } from "@/domain/discount-rules/discount.rules.factory";
+import {
+  DiscountRule,
+  DISCOUNT_CODE
+} from "@/domain/discount-rules/discount.rules.types";
 
 const { TWO_X_ONE, BULK, PROMO_CODE } = DISCOUNT_CODE;
 

@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 import Title from "@/ui/components/Title.vue";
 import SummaryItems from "@/ui/components/SummaryItems.vue";
 import SummaryDiscounts from "@/ui/components/SummaryDiscounts.vue";

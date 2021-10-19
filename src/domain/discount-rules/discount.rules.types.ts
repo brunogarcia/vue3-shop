@@ -1,5 +1,4 @@
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
-import { ScannerItem } from "@/domain/checkout/checkout.types";
+import { ScannerItem, PRODUCT_CODE } from "@/domain/checkout/checkout.types";
 
 export enum DISCOUNT_CODE {
   TWO_X_ONE = "TWO_X_ONE",

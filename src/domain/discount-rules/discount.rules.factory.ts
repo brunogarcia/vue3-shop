@@ -1,8 +1,8 @@
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
-import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
-
-import { ScannerItem } from "@/domain/checkout/checkout.types";
-import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
+import { ScannerItem, PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+import {
+  DiscountRule,
+  DISCOUNT_CODE
+} from "@/domain/discount-rules/discount.rules.types";
 
 const { CAP, TSHIRT } = PRODUCT_CODE;
 const { TWO_X_ONE, BULK, PROMO_CODE } = DISCOUNT_CODE;

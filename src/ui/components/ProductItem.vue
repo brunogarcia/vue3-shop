@@ -58,10 +58,9 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
 
-import EVENT from "@/ui/types/event";
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+import { Product, PRODUCT_CODE } from "@/domain/checkout/checkout.types";
 
-import { Product } from "@/domain/checkout/checkout.types";
+import EVENT from "@/ui/types/event";
 import isValidProductCode from "@/ui/utils/isValidProductCode";
 
 import ShopButton from "@/ui/components/core/Button.vue";
