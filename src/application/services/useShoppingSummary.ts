@@ -1,7 +1,8 @@
 import { computed } from "vue";
-import { useStore } from "@/infrastructure/store";
 
 import { TotalDiscountItem } from "@/domain/checkout/checkout.types";
+
+import { useStore } from "@/infrastructure/store";
 import { GETTERS } from "@/infrastructure/store/shopping/shopping.types";
 
 export default function useShopping() {

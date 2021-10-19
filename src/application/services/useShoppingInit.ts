@@ -1,4 +1,5 @@
 import { onMounted } from "vue";
+
 import { useStore } from "@/infrastructure/store";
 import { ACTIONS } from "@/infrastructure/store/shopping/shopping.types";
 

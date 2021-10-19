@@ -1,7 +1,8 @@
 import { computed } from "vue";
-import { useStore } from "@/infrastructure/store";
 
 import { Product, PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+
+import { useStore } from "@/infrastructure/store";
 import {
   ACTIONS,
   GETTERS

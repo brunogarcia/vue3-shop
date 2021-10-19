@@ -24,11 +24,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Modal from "@/ui/components/Modal.vue";
-import ShopButton from "@/ui/components/core/Button.vue";
-import Checkout from "@/ui/components/Checkout.vue";
+
 import useModal from "@/application/services/useModal";
 import useShoppingSummary from "@/application/services/useShoppingSummary";
+
+import Modal from "@/ui/components/Modal.vue";
+import Checkout from "@/ui/components/Checkout.vue";
+import ShopButton from "@/ui/components/core/Button.vue";
 
 export default defineComponent({
   name: "SummaryTotal",

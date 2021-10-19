@@ -1,9 +1,12 @@
 import { ActionContext } from "vuex";
 
-import { StateRoot } from "@/infrastructure/store/store.types";
-import { Product, TotalDiscountItem } from "@/domain/checkout/checkout.types";
+import {
+  Product,
+  TotalDiscountItem,
+  PRODUCT_CODE
+} from "@/domain/checkout/checkout.types";
 
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+import { StateRoot } from "@/infrastructure/store/store.types";
 
 export enum MUTATION {
   SAVE_PRODUCTS = "SAVE_PRODUCTS",

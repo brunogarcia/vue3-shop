@@ -1,5 +1,5 @@
-import { StateRoot } from "@/infrastructure/store/store.types";
 import { Product, Summary } from "@/domain/checkout/checkout.types";
+import { StateRoot } from "@/infrastructure/store/store.types";
 
 const products: Product[] = [];
 

@@ -1,18 +1,21 @@
 import { ActionContext, ActionTree } from "vuex";
 
-import http from "@/infrastructure/http";
-import CheckoutService from "@/domain/checkout/checkout.service";
+import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
 import DiscountRulesService from "@/domain/discount-rules/discount.rules.service";
 
-import { StateRoot } from "@/infrastructure/store/store.types";
-import { ShoppingActions } from "@/infrastructure/store/shopping/shopping.types";
-import { Product, PricingRule } from "@/domain/checkout/checkout.types";
-import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
+import CheckoutService from "@/domain/checkout/checkout.service";
+import {
+  Product,
+  PricingRule,
+  PRODUCT_CODE
+} from "@/domain/checkout/checkout.types";
 
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
+import http from "@/infrastructure/http";
+import { StateRoot } from "@/infrastructure/store/store.types";
 import {
   ACTIONS,
-  MUTATION
+  MUTATION,
+  ShoppingActions
 } from "@/infrastructure/store/shopping/shopping.types";
 
 let checkoutService: CheckoutService;

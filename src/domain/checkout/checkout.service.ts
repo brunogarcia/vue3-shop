@@ -1,12 +1,13 @@
-import { PRODUCT_CODE } from "@/domain/checkout/checkout.types";
-import { DISCOUNT_CODE } from "@/domain/discount-rules/discount.rules.types";
-
 import {
   PricingRule,
   ScannerItem,
-  TotalDiscountItem
+  TotalDiscountItem,
+  PRODUCT_CODE
 } from "@/domain/checkout/checkout.types";
-import { DiscountRule } from "@/domain/discount-rules/discount.rules.types";
+import {
+  DiscountRule,
+  DISCOUNT_CODE
+} from "@/domain/discount-rules/discount.rules.types";
 
 const { EMPTY } = PRODUCT_CODE;
 

@@ -1,9 +1,12 @@
 import { MutationTree } from "vuex";
 
-import { StateRoot } from "@/infrastructure/store/store.types";
-import { MUTATION } from "@/infrastructure/store/shopping/shopping.types";
 import { Product, TotalDiscountItem } from "@/domain/checkout/checkout.types";
-import { ShoppingMutations } from "@/infrastructure/store/shopping/shopping.types";
+
+import { StateRoot } from "@/infrastructure/store/store.types";
+import {
+  ShoppingMutations,
+  MUTATION
+} from "@/infrastructure/store/shopping/shopping.types";
 
 const mutations: MutationTree<StateRoot> & ShoppingMutations = {
   [MUTATION.SAVE_PRODUCTS](state: StateRoot, payload: Product[]) {

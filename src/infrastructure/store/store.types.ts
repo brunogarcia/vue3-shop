@@ -1,10 +1,11 @@
+import { Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
+
 import { Product, Summary } from "@/domain/checkout/checkout.types";
 import {
   ShoppingMutations,
   ShoppingActions,
   ShoppingGetters
 } from "@/infrastructure/store/shopping/shopping.types";
-import { Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
 
 export interface StateRoot {
   products: Product[];
