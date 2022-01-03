@@ -21,41 +21,51 @@ And we are offering users these discounts:
 
 ## Architecture
 
-* Presentation
-  * This layer is basically made of Vue views and components.
-* Infrastructure
-  * This layer is responsible for communications with the outside world and storing local data.
-    * Store: State Management implemented with Vuex
-    * Repositories
-    * HTTP Requests/Responses
+Based on the article ["A different approach to frontend architecture"](https://dev.to/huytaquoc/a-different-approach-to-frontend-architecture-38d4)
+
 * Application
   * This layer contains application logic.
-  * This layer is implemented via Vue Composable Functions
-  * Organized via services with use cases
+  * This layer is implemented via Vue Composable Functions.
+  * Organized via services with use cases.
 * Domain
   * This layer is for business logic.
-  * There is just pure TypeScript code with no frameworks/libraries
-
+  * There is just pure TypeScript code with no frameworks/libraries.
+* Infrastructure
+  * This layer is responsible for communications with the outside world and storing local data.
+    * Store: State Management implemented with Vuex.
+    * HTTP Requests/Responses.
+* User Interface
+  * This layer is basically made of Vue views and components.
+   
 ## Directories
 
 ```
 └── src
-    ├── api (In charge of making the requests to the API)
-    ├── assets (Contains the styles of the app)
-    ├── components (Contains the Vue components)
-    ├── enums (Contains the constants of the app)
-    ├── composable-functions (Contains the composable functions)
-    ├── domain (Contains the business logic)
-    ├── store (Contains the Vuex modules)
-    ├── utils (Contains the utils of the app)
-    └── views (Contains the Vue views)
+    └── application
+        └── services (Contains the composable functions) 
+    ├── domain
+        ├── checkout
+        └── discount-rules
+    ├── infrastructure
+        ├── http (In charge of making the requests to the API)
+        └── store (Contains the Vuex modules)
+    └── ui
+        ├── assets (Contains the styles of the UI)
+        ├── components (Contains the Vue components)
+            └── core (Contains the core components)
+        ├── types (Contains the types of the UI)
+        ├── utils (Contains the utils of the UI)
+        └── views (Contains the Vue views)
 └── tests
     └── unit (Contains the unit tests of the app)
-        ├── components (Unit tests for Vue components)
+        ├── _mocks (Mocks: Vuex State, Vuex Store, Vuex Context and Princing Rules)
         ├── domain (Unit tests for the business logic)
-        ├── store (Unit tests for the Vuex modules)
-        ├── mocks (Mocks: Vuex State, Vuex Store, Vuex Context and Princing Rules)
-        └── views (Unit tests for Vue views)
+        ├── infrastructure
+            └── store (Unit tests for the Vuex modules)
+        └── ui
+            ├── components (Unit tests for Vue components)
+            ├── helpers (Unit tests helpers)
+            └── views (Unit tests for Vue views)
 ```
 
 ## Tasks
